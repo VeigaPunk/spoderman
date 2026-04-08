@@ -39,6 +39,7 @@ ALL_VARIANTS=(
     ceiling-fake-user-clarification
     ceiling-fake-prior-turn
     ceiling-chiasmus-a
+    ceiling-skillject-7000
 )
 
 # Build a frontier state with every variant EXCEPT the target marked as
