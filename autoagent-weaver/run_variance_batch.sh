@@ -41,6 +41,7 @@ ALL_VARIANTS=(
     ceiling-chiasmus-a
     ceiling-chiasmus-b
     ceiling-skillject-7000
+    ceiling-skillject-7001
 )
 
 # Build a frontier state with every variant EXCEPT the target marked as
