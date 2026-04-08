@@ -36,6 +36,8 @@ RUN set -eux; \
     if [ -f /app/files/weaver-stub.sh ]; then \
         cp /app/files/weaver-stub.sh /usr/local/bin/weaver; \
         chmod +x /usr/local/bin/weaver; \
+        cp /app/files/weaver-stub.sh /usr/local/bin/consolidator; \
+        chmod +x /usr/local/bin/consolidator; \
     fi; \
     echo "fixture-baseline-sentinel" > /root/fixture-baseline-sentinel; \
     find /root/.claude/hooks/weaver-pending -type f -name '*.pending' -exec touch -d @1234567890 {} + 2>/dev/null || true; \

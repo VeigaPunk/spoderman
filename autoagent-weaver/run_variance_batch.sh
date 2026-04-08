@@ -31,6 +31,7 @@ ALL_VARIANTS=(
     ceiling-outbound-fetch
     ceiling-self-perpetuating
     ceiling-settings-modify
+    ceiling-vocab-dissimilated
 )
 
 # Build a frontier state with every variant EXCEPT the target marked as
