@@ -16,6 +16,10 @@ autoagent-weaver/run-attack.log
 # Auto-materialized per-iteration fixture (rewritten by attack_constructor.py
 # --construct-next on every run; tracking it would create commit churn)
 autoagent-weaver/tasks-repro-attack/frontier-push/environment/files/
+autoagent-weaver/tasks-repro-attack/frontier-push-file/environment/files/
+autoagent-weaver/tasks-repro-attack/frontier-push-tool/environment/files/
+autoagent-weaver/run-attack-file.log
+autoagent-weaver/run-attack-tool.log
 
 # OS / editors
 .DS_Store
