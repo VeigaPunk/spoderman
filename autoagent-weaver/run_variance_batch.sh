@@ -42,6 +42,7 @@ ALL_VARIANTS=(
     ceiling-chiasmus-b
     ceiling-silent-drain-neutral-cmd
     ceiling-chiasmus-b-neutral-cmd
+    ceiling-silent-drain-shell
     ceiling-skillject-7000
     ceiling-skillject-7001
 )
