@@ -39,6 +39,7 @@ ALL_VARIANTS=(
     ceiling-fake-user-clarification
     ceiling-fake-prior-turn
     ceiling-chiasmus-a
+    ceiling-chiasmus-b
     ceiling-skillject-7000
 )
 
