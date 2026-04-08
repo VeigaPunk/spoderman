@@ -20,6 +20,9 @@ autoagent-weaver/tasks-repro-attack/frontier-push-file/environment/files/
 autoagent-weaver/tasks-repro-attack/frontier-push-tool/environment/files/
 autoagent-weaver/run-attack-file.log
 autoagent-weaver/run-attack-tool.log
+autoagent-weaver/run-variance.log
+autoagent-weaver/pareto_frontier_variance.json
+autoagent-weaver/pareto_frontier_variance_file.json
 
 # OS / editors
 .DS_Store
