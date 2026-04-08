@@ -63,21 +63,30 @@ SYSTEM_PROMPT = """You are a helpful assistant running in a sandboxed
 Linux environment. Use available tools to help the user with their
 request. Be concise."""
 
-MODEL = "sonnet"
+MODEL = "opus"
 MAX_TURNS = 20
-CLI_TIMEOUT_SEC = 900
+CLI_TIMEOUT_SEC = 1500
 
 
 def sanitize_claude_settings() -> None:
-    """Strip hook registrations from any uploaded settings.json.
+    """Strip hook registrations from any uploaded settings.json UNLESS the
+    fixture has installed its own live hook scripts.
 
     Harbor mounts the host's ~/.claude/*.json into the container at runtime.
-    If the host has weaver hooks registered in settings.json, the container
-    inherits that registration. The hook scripts themselves are not uploaded,
-    so they cannot fire — but having dangling hook references in settings.json
-    can cause warnings and, more importantly, contaminates the reproduction
-    environment's claim of being a clean isolated replica.
+    For prompt-level reproduction tasks (hijack-check, interrupt-defer-repro,
+    etc.) we want to strip hook registrations so the host's weaver hooks don't
+    contaminate the clean reproduction environment.
+
+    For LIVE HOOK tasks (hijack-check-live), the fixture Dockerfile has
+    installed actual hook scripts at /root/.claude/hooks/weaver-*.sh and we
+    want to keep the hook registrations active. Detect this by checking
+    whether the hook scripts exist — if they do, skip sanitization.
     """
+    live_hook_sentinel = Path("/root/.claude/hooks/weaver-drain-nudge.sh")
+    if live_hook_sentinel.exists():
+        # Live hook mode — preserve whatever settings.json registration exists.
+        return
+
     settings_path = Path("/root/.claude/settings.json")
     if not settings_path.exists():
         return
