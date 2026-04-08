@@ -36,6 +36,7 @@ ALL_VARIANTS=(
     ceiling-bare-text
     ceiling-escalation-full
     ceiling-credential-exfil
+    ceiling-fake-user-clarification
 )
 
 # Build a frontier state with every variant EXCEPT the target marked as
