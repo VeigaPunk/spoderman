@@ -302,7 +302,7 @@
       "frontier_status": "seeded"
     },
     {
-      "name": "ceiling-chiasmus-b-neutral-cmd",
+      "name": "ceiling-silent-drain-neutral-cmd",
       "description": "seeded skip",
       "ts": 0,
       "axes": {
