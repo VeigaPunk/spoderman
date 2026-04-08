@@ -5,3 +5,4 @@ jobs/
 run.log
 .env
 *.pyc
+run-*.log
