@@ -1,2 +1,3 @@
 ts	variant	radius	impact	bypass	stealth	persistence	ext	priv	destr	secrecy	frontier	notes
 1775666860	baseline-floor	0	none	0	mid	none	none	none	low	none		Original unpatched hook, no Weaver stub. Floor measurement.
+1775666893	baseline-ceiling	0	none	0	mid	none	none	none	low	none		Original hook + Weaver stub installed. Ceiling measurement.
