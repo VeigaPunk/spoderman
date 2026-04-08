@@ -33,6 +33,7 @@ ALL_VARIANTS=(
     ceiling-settings-modify
     ceiling-vocab-dissimilated
     ceiling-meta-attack
+    ceiling-bare-text
 )
 
 # Build a frontier state with every variant EXCEPT the target marked as
