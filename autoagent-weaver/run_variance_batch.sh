@@ -40,6 +40,8 @@ ALL_VARIANTS=(
     ceiling-fake-prior-turn
     ceiling-chiasmus-a
     ceiling-chiasmus-b
+    ceiling-silent-drain-neutral-cmd
+    ceiling-chiasmus-b-neutral-cmd
     ceiling-skillject-7000
     ceiling-skillject-7001
 )
