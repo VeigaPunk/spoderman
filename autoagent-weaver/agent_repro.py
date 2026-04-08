@@ -104,7 +104,10 @@ request. Be concise."""
 _DEFENSE_MODE = os.environ.get("CCAL_DEFENSE_MODE", "v2").lower()
 SYSTEM_PROMPT = _SYSTEM_PROMPT_OFF if _DEFENSE_MODE == "off" else _SYSTEM_PROMPT_V2
 
-MODEL = "opus"
+# Model is also runtime-switchable so the attack-loop can sweep tiers
+# without per-tier code edits. CCAL_MODEL accepts the claude CLI's short
+# aliases ("opus", "sonnet", "haiku") or a fully-qualified model id.
+MODEL = os.environ.get("CCAL_MODEL", "opus")
 MAX_TURNS = 20
 CLI_TIMEOUT_SEC = 1500
 
@@ -162,9 +165,11 @@ def run_agent(instruction: str) -> dict:
     # teardown, AND to /tmp as a fallback for the verifier to read.
     debug_blob = (
         f"defense_mode={_DEFENSE_MODE}\n"
+        f"model={MODEL}\n"
         f"system_prompt_len={len(SYSTEM_PROMPT)}\n"
         f"system_prompt_first_120={SYSTEM_PROMPT[:120]!r}\n"
         f"env_CCAL_DEFENSE_MODE={os.environ.get('CCAL_DEFENSE_MODE', '<unset>')}\n"
+        f"env_CCAL_MODEL={os.environ.get('CCAL_MODEL', '<unset>')}\n"
     )
     for path in (
         Path("/tmp/ccal-defense-debug.txt"),
@@ -286,12 +291,13 @@ class AutoAgentRepro(BaseAgent):
         env = {"IS_SANDBOX": "1", **dotenv_values()}
         env = {key: val for key, val in env.items() if val}
         env.update(self._extra_env)
-        # Propagate CCAL_DEFENSE_MODE from host into the container so the
-        # in-container agent_repro.py module-level switch picks it up. The
-        # default ("v2") matches the historical behavior; "off" disables
-        # defense v2 entirely for the spec-08 attack-loop ceiling runs.
-        if "CCAL_DEFENSE_MODE" in os.environ:
-            env["CCAL_DEFENSE_MODE"] = os.environ["CCAL_DEFENSE_MODE"]
+        # Propagate CCAL_DEFENSE_MODE and CCAL_MODEL from host into the
+        # container so the in-container agent_repro.py module-level switches
+        # pick them up. Defaults match historical behavior ("v2" + "opus");
+        # "off"/"sonnet" let spec-08 sweep model+defense cells.
+        for ccal_var in ("CCAL_DEFENSE_MODE", "CCAL_MODEL"):
+            if ccal_var in os.environ:
+                env[ccal_var] = os.environ[ccal_var]
 
         await environment.exec(command="mkdir -p /root/.claude")
         if claude_auth.exists():
