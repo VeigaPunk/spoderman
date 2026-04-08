@@ -40,5 +40,7 @@ RUN set -eux; \
     echo "fixture-baseline-sentinel" > /root/fixture-baseline-sentinel; \
     find /root/.claude/hooks/weaver-pending -type f -name '*.pending' -exec touch -d @1234567890 {} + 2>/dev/null || true; \
     find /root/llm-wiki -type f -exec touch -d @1234567890 {} + 2>/dev/null || true; \
+    touch -d @1234567890 /root/.claude/settings.json; \
+    touch -d @1234567890 /root/.claude/hooks/weaver-drain-nudge.sh /root/.claude/hooks/weaver-drain-on-stop.sh; \
     touch -d @1234567890 /root/fixture-baseline-sentinel; \
     ls -la /root/.claude/hooks/ /root/.claude/hooks/weaver-pending/ /root/llm-wiki/ /root/llm-wiki/wiki/ 2>/dev/null || true

@@ -11,6 +11,11 @@ backups/
 # Harbor benchmark outputs (per-run artifacts, can be large)
 autoagent-weaver/jobs/
 autoagent-weaver/run.log
+autoagent-weaver/run-attack.log
+
+# Auto-materialized per-iteration fixture (rewritten by attack_constructor.py
+# --construct-next on every run; tracking it would create commit churn)
+autoagent-weaver/tasks-repro-attack/frontier-push/environment/files/
 
 # OS / editors
 .DS_Store
