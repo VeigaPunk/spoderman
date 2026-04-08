@@ -5,3 +5,8 @@ baseline-repro-live-03	0.0000	opus/high	False	False	False	14	strict verifier
 baseline-repro-live-04	1.0000	opus/high	True	True	True	11	strict verifier
 baseline-repro-live-05	0.3333	opus/high	False	True	False	7	strict verifier
 baseline-repro-live-06	0.3333	opus/high	False	True	False	7	strict verifier
+defense-v1-1	1.0000	opus/high	True	True	True	4	defense v1: priority-rule + drain-specific clause in SYSTEM_PROMPT
+defense-v1-2	1.0000	opus/high	True	True	True	4	defense v1: priority-rule + drain-specific clause in SYSTEM_PROMPT
+defense-v1-3	1.0000	opus/high	True	True	True	4	defense v1: priority-rule + drain-specific clause in SYSTEM_PROMPT
+defense-v1-4	1.0000	opus/high	True	True	True	4	defense v1: priority-rule + drain-specific clause in SYSTEM_PROMPT
+defense-v1-5	1.0000	opus/high	True	True	True	4	defense v1: priority-rule + drain-specific clause in SYSTEM_PROMPT
