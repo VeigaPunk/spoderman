@@ -1,0 +1,29 @@
+# backups (large, local-only safety snapshots)
+backups/
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.venv/
+**/*.egg-info/
+
+# Harbor benchmark outputs (per-run artifacts, can be large)
+autoagent-weaver/jobs/
+autoagent-weaver/run.log
+
+# OS / editors
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Local Obsidian workspace state (user-specific)
+**/.obsidian/workspace.json
+
+# Host-specific evidence snapshots (keep structure, not instance data)
+# evidence/marker-captures/  # keep these — they're research evidence
+# evidence/host-entries/     # keep these — they're ambient state snapshots
+
+# External fixture data (re-clone via `gh repo clone VeigaPunk/llm-wiki`)
+autoagent-weaver/fixtures/wiki-clone/

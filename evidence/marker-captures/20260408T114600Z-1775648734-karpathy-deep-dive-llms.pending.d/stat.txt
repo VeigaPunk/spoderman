@@ -1,0 +1,8 @@
+  File: /home/vhpnk/.claude/hooks/weaver-pending/1775648734-karpathy-deep-dive-llms.pending
+  Size: 24        	Blocks: 8          IO Block: 4096   regular file
+Device: 8,48	Inode: 151708      Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/   vhpnk)   Gid: ( 1000/   vhpnk)
+Access: 2026-04-08 08:46:00.691825361 -0300
+Modify: 2026-04-08 08:45:34.981088190 -0300
+Change: 2026-04-08 08:45:34.981088190 -0300
+ Birth: 2026-04-08 08:45:34.981088190 -0300

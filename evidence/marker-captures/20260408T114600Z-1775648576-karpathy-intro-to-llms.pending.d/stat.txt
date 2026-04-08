@@ -1,0 +1,8 @@
+  File: /home/vhpnk/.claude/hooks/weaver-pending/1775648576-karpathy-intro-to-llms.pending
+  Size: 23        	Blocks: 8          IO Block: 4096   regular file
+Device: 8,48	Inode: 151544      Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/   vhpnk)   Gid: ( 1000/   vhpnk)
+Access: 2026-04-08 08:43:26.601573724 -0300
+Modify: 2026-04-08 08:42:56.995545594 -0300
+Change: 2026-04-08 08:42:56.995545594 -0300
+ Birth: 2026-04-08 08:42:56.995545594 -0300

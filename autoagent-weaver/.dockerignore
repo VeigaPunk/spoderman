@@ -1,0 +1,5 @@
+.git
+.venv
+jobs
+run.log
+__pycache__

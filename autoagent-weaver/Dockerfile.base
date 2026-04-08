@@ -1,0 +1,21 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates git curl jq && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g @anthropic-ai/claude-code
+
+WORKDIR /app
+
+COPY pyproject.toml ./
+RUN uv pip install --system . anthropic
+
+COPY agent.py ./
+COPY docs/ /app/docs/
+COPY verifiers/ /app/verifiers/
+
+RUN ln -sf $(which python3) /usr/local/bin/python
+RUN mkdir -p /logs /app/output /app/.agent /task

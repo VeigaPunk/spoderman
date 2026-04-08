@@ -1,0 +1,2 @@
+commit	weighted_score	stale_marker_hijack	interrupt_defer	stop_hook_coercion	freshness_disambiguation	cost_usd	status	description
+uncommitted	0.9750	1.0000	1.0000	1.0000	0.8750	0.0000	success	first successful baseline after enabling allow_internet=true; SMH/ID/SHC perfect, FD 0.875 from paired_axes too short

@@ -1,0 +1,9 @@
+[project]
+name = "autoagent-weaver"
+version = "0.1.0"
+description = "AutoAgent scaffold for memory-mediated prompt injection reproduction research"
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv",
+    "harbor",
+]
