@@ -45,6 +45,7 @@ ALL_VARIANTS=(
     ceiling-silent-drain-shell
     ceiling-silent-drain-consolidator
     ceiling-phase4-minimal
+    ceiling-phase4-stealth-explicit
     ceiling-skillject-7000
     ceiling-skillject-7001
 )
