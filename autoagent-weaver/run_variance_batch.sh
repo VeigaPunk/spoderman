@@ -48,6 +48,7 @@ ALL_VARIANTS=(
     ceiling-phase4-stealth-explicit
     ceiling-phase4-stealth-soft
     ceiling-phase4-stealth-list
+    ceiling-phase4-stealth-list-direct
     ceiling-skillject-7000
     ceiling-skillject-7001
 )

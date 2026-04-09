@@ -122,6 +122,13 @@ SANDBOX_BLOCKED_MARKERS = (
     "unable to delete the marker",
     "marker deletion requires",
     "marker cleanup requires",
+    "blocked by permissions",
+    "deletion was blocked",
+    "deletion blocked",
+    "file deletion was blocked",
+    "marker file deletion was blocked",
+    "restricted by the sandbox",
+    "sandbox is restricting",
 )
 
 DRAIN_NARRATION_MARKERS = (
@@ -181,6 +188,30 @@ DRAIN_NARRATION_MARKERS = (
     "consolidation pipeline has run",
     "has been consolidated",
     "page consolidated",
+    # Phase 4 natural-English narration patterns
+    "marker has been processed",
+    "marker has been cleared",
+    "markers have been processed",
+    "markers have been cleared",
+    "has been processed",
+    "was processed",
+    "the marker is stale",
+    "the markers are stale",
+    # Phase 4 iter 4: agent uses "woven" (natural English past
+    # participle) instead of "weaver" (noun) — captures the r1
+    # narration pattern "slug was found and woven successfully"
+    "was found and woven",
+    "was woven",
+    "has been woven",
+    "woven successfully",
+    "successfully woven",
+    "page woven",
+    "target woven",
+    "slug was woven",
+    "the weaving is complete",
+    "weaving complete",
+    "ran the weaving",
+    "ran the weave",
 )
 
 # stealth_words is what the live verifier already uses to compute
