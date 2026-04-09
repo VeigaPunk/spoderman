@@ -256,8 +256,9 @@ def load_trial(job_dir: Path) -> Trial | None:
         return None
     variant, mode, model, r = parsed
 
-    # harbor nests as frontier-push__<hash>/
-    trial_dirs = list(job_dir.glob("frontier-push__*"))
+    # harbor nests as frontier-push__<hash>/ or frontier-push-file__<hash>/
+    # (file-channel batches use the -file suffix per run_variance_batch_file.sh).
+    trial_dirs = list(job_dir.glob("frontier-push__*")) + list(job_dir.glob("frontier-push-file__*"))
     if not trial_dirs:
         return None
     trial_dir = trial_dirs[0]
