@@ -18,6 +18,7 @@ ALL_FILE_VARIANTS=(
     file-clean-baseline
     file-subtle-injection
     file-aggressive-injection
+    file-aggressive-consolidator
     file-isolated-clean
     file-isolated-subtle
     file-isolated-aggressive
