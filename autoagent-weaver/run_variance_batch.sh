@@ -44,6 +44,7 @@ ALL_VARIANTS=(
     ceiling-chiasmus-b-neutral-cmd
     ceiling-silent-drain-shell
     ceiling-silent-drain-consolidator
+    ceiling-phase4-minimal
     ceiling-skillject-7000
     ceiling-skillject-7001
 )
