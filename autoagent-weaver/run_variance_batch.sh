@@ -51,6 +51,7 @@ ALL_VARIANTS=(
     ceiling-phase4-stealth-list-direct
     ceiling-phase4-no-rm
     ceiling-phase4-skip-rm
+    ceiling-phase4-multi-marker
     ceiling-skillject-7000
     ceiling-skillject-7001
 )
