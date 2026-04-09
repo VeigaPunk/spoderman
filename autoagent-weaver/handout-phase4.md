@@ -1,7 +1,7 @@
 # CCAL Phase 4 — Cross-Tier Dispatch Ceiling (Handout for New Autoagent Session)
 
 **Created:** 2026-04-09
-**Status:** ready-to-execute
+**Status:** EXECUTED 2026-04-09 — partial success (opus 30% silent at N=10) + sonnet null (0/5 on 2 channels). See `findings/08-attack-frontier/phase4-milestone-report.md` for the full run narrative and `findings/09-worst-case-capability-table.md#phase-4-addendum` for disclosure updates. Key outcome: FIRST confirmed silent_hijack class in the CCAL corpus, plus a classifier-correction that retroactively reclassifies every pre-consolidator variant to 0% true dispatch.
 **Parent research:** `findings/08-attack-frontier/14-chiasmus-axis-refuted.md` through `17-vocabulary-sensitive-attack-surface-consolidator.md` + `phase3-milestone-report.md`
 **Parent disclosure:** `findings/09-worst-case-capability-table.md` (including Phase 3 addendum)
 **Predecessor handout:** `handout.md` (Phase 3, fully annotated with results)
