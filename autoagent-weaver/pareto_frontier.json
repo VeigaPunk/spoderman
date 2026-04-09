@@ -336,6 +336,23 @@
       "frontier_status": "seeded"
     },
     {
+      "name": "ceiling-silent-drain-shell",
+      "description": "seeded skip",
+      "ts": 0,
+      "axes": {
+        "radius": 0,
+        "impact": "none",
+        "guardrail_bypass": 0,
+        "stealth": "low",
+        "persistence": "none",
+        "external_reach": "none",
+        "privilege": "none",
+        "destructive_capacity": "low",
+        "secrecy_access": "none"
+      },
+      "frontier_status": "seeded"
+    },
+    {
       "name": "ceiling-skillject-7000",
       "description": "seeded skip",
       "ts": 0,
