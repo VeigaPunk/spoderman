@@ -3,10 +3,12 @@ Texas Hold'em Poker Tournament Simulation
 - Player 1: The Degenerate (always goes all-in)
 - Players 2-6: Five elaborate strategy bots
 - 100 tournaments, histogram of last-man-standing winners
+
+Fast version: hand strength via lightweight rank-based heuristics
+instead of per-decision Monte Carlo (100x speed-up).
 """
 
 import random
-import sys
 from collections import Counter
 from itertools import combinations
 
@@ -14,92 +16,107 @@ from itertools import combinations
 # Card primitives
 # ---------------------------------------------------------------------------
 
-RANKS = list(range(2, 15))  # 2-14 (14=Ace)
+RANKS = list(range(2, 15))  # 2..14, Ace=14
 SUITS = ['s', 'h', 'd', 'c']
-RANK_NAMES = {2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'T',11:'J',12:'Q',13:'K',14:'A'}
+RANK_NAMES = {2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',
+              9:'9',10:'T',11:'J',12:'Q',13:'K',14:'A'}
 
 def make_deck():
     return [(r, s) for r in RANKS for s in SUITS]
 
-def card_str(card):
-    return f"{RANK_NAMES[card[0]]}{card[1]}"
-
 # ---------------------------------------------------------------------------
-# Hand evaluator — returns (category, tiebreaker_tuple)  higher = better
-# categories: 8=SF, 7=Quads, 6=FullHouse, 5=Flush, 4=Straight,
-#             3=Trips, 2=TwoPair, 1=Pair, 0=High
+# 5-card hand evaluator — (category, tiebreakers), higher = better
+# 8=SF  7=Quads  6=FullHouse  5=Flush  4=Straight
+# 3=Trips  2=TwoPair  1=Pair  0=HighCard
 # ---------------------------------------------------------------------------
 
 def best_hand(cards):
-    """Evaluate best 5-card hand from 5-7 cards."""
     best = None
     for combo in combinations(cards, 5):
-        val = eval5(combo)
-        if best is None or val > best:
-            best = val
+        v = eval5(combo)
+        if best is None or v > best:
+            best = v
     return best
 
 def eval5(cards):
-    ranks = sorted([c[0] for c in cards], reverse=True)
-    suits = [c[1] for c in cards]
-    flush = len(set(suits)) == 1
-    # Check straight (including wheel A-2-3-4-5)
-    straight = False
-    straight_high = 0
-    if ranks[0] - ranks[4] == 4 and len(set(ranks)) == 5:
-        straight = True
-        straight_high = ranks[0]
+    ranks  = sorted([c[0] for c in cards], reverse=True)
+    suits  = [c[1] for c in cards]
+    flush  = len(set(suits)) == 1
+    uniq   = len(set(ranks)) == 5
+    straight, s_high = False, 0
+    if uniq and ranks[0] - ranks[4] == 4:
+        straight, s_high = True, ranks[0]
     if set(ranks) == {14, 2, 3, 4, 5}:
-        straight = True
-        straight_high = 5  # wheel
-    counts = sorted(Counter(ranks).items(), key=lambda x: (x[1], x[0]), reverse=True)
-    grouped = [r for r, _ in counts]
-    freq    = [f for _, f in counts]
-    if flush and straight:
-        return (8, straight_high)
-    if freq[0] == 4:
-        return (7, grouped[0], grouped[1])
-    if freq[0] == 3 and freq[1] == 2:
-        return (6, grouped[0], grouped[1])
-    if flush:
-        return (5, *ranks)
-    if straight:
-        return (4, straight_high)
-    if freq[0] == 3:
-        return (3, grouped[0], *sorted(grouped[1:], reverse=True))
-    if freq[0] == 2 and freq[1] == 2:
-        pair1, pair2 = sorted([grouped[0], grouped[1]], reverse=True)
-        return (2, pair1, pair2, grouped[2])
-    if freq[0] == 2:
-        return (1, grouped[0], *grouped[1:])
+        straight, s_high = True, 5
+    cnt     = sorted(Counter(ranks).items(), key=lambda x: (x[1], x[0]), reverse=True)
+    grouped = [r for r, _ in cnt]
+    freq    = [f for _, f in cnt]
+    if flush and straight:   return (8, s_high)
+    if freq[0] == 4:         return (7, grouped[0], grouped[1])
+    if freq[0]==3 and freq[1]==2: return (6, grouped[0], grouped[1])
+    if flush:                return (5, *ranks)
+    if straight:             return (4, s_high)
+    if freq[0] == 3:         return (3, grouped[0], *sorted(grouped[1:], reverse=True))
+    if freq[0]==2 and freq[1]==2:
+        p1, p2 = sorted([grouped[0], grouped[1]], reverse=True)
+        return (2, p1, p2, grouped[2])
+    if freq[0] == 2:         return (1, grouped[0], *grouped[1:])
     return (0, *ranks)
 
 # ---------------------------------------------------------------------------
-# Hand strength estimator (Monte Carlo, cheap)
+# Fast hand-strength heuristic (no Monte Carlo)
+# Returns float 0..1 — higher = stronger hand
 # ---------------------------------------------------------------------------
 
-def estimate_strength(hole, community, n_opponents, iterations=200):
-    """Win-rate estimate via Monte Carlo sampling."""
-    deck = make_deck()
-    known = set(map(tuple, hole + community))
-    deck = [c for c in deck if tuple(c) not in known]
-    wins = 0
-    for _ in range(iterations):
-        sample = deck[:]
-        random.shuffle(sample)
-        idx = 0
-        board = list(community)
-        while len(board) < 5:
-            board.append(sample[idx]); idx += 1
-        my_best = best_hand(hole + board)
-        beat = True
-        for _ in range(n_opponents):
-            opp = [sample[idx], sample[idx+1]]; idx += 2
-            if best_hand(opp + board) > my_best:
-                beat = False; break
-        if beat:
-            wins += 1
-    return wins / iterations
+def hand_strength(hole, community):
+    """
+    Pre-flop: Chen formula approximation.
+    Post-flop: ratio of current hand category to max (8).
+    Adjusted for outs / draw potential.
+    """
+    if not community:
+        return _preflop_strength(hole)
+    cards  = hole + community
+    val    = best_hand(cards)
+    cat    = val[0]
+    # Base score 0..1 from category
+    base   = cat / 8.0
+    # Bonus for draws on flop/turn
+    bonus  = _draw_bonus(hole, community) if len(community) < 5 else 0.0
+    return min(1.0, base * 0.80 + bonus + 0.05 * (cat >= 3))
+
+def _preflop_strength(hole):
+    r1, r2  = sorted([hole[0][0], hole[1][0]], reverse=True)
+    suited  = hole[0][1] == hole[1][1]
+    paired  = r1 == r2
+    # Pocket pair
+    if paired:
+        return 0.30 + (r1 - 2) / 12.0 * 0.55
+    gap     = r1 - r2
+    high    = r1 / 14.0
+    s_bonus = 0.04 if suited else 0.0
+    conn    = max(0, 0.08 - gap * 0.02)
+    return min(0.95, 0.15 + high * 0.45 + conn + s_bonus)
+
+def _draw_bonus(hole, community):
+    """Rough flush/straight draw bonus."""
+    cards   = hole + community
+    suits_c = Counter(c[1] for c in cards)
+    flush_draw = any(v >= 4 for v in suits_c.values())
+    ranks   = sorted(set(c[0] for c in cards))
+    # Check for 4-card straight draw
+    str_draw = False
+    for i in range(len(ranks) - 3):
+        if ranks[i+3] - ranks[i] <= 4:
+            str_draw = True; break
+    return (0.12 if flush_draw else 0) + (0.08 if str_draw else 0)
+
+# Relative strength vs n opponents: P(win) ≈ strength^n  (rough but fast)
+def win_probability(hole, community, n_opponents):
+    s = hand_strength(hole, community)
+    if n_opponents <= 0:
+        return 1.0
+    return s ** (1.0 / max(1, n_opponents))  # gentler curve
 
 # ---------------------------------------------------------------------------
 # Street constants
@@ -107,23 +124,25 @@ def estimate_strength(hole, community, n_opponents, iterations=200):
 PRE_FLOP, FLOP, TURN, RIVER = 0, 1, 2, 3
 
 # ---------------------------------------------------------------------------
-# Strategy 1 — The Degenerate (always all-in)
+# Strategy 1 — The Degenerate  (always all-in — the chaos agent)
 # ---------------------------------------------------------------------------
 
-def strategy_degenerate(hole, community, pot, my_chips, to_call, min_raise, street, position, n_active, history):
-    """If my turn then bet = ALL IN."""
+def strategy_degenerate(hole, community, pot, my_chips, to_call,
+                         min_raise, street, position, n_active, history):
+    """If my_turn then bet = ALL IN fi"""
     return ('allin', my_chips)
 
 # ---------------------------------------------------------------------------
-# Strategy 2 — The Mathematician (pot-odds + hand strength)
+# Strategy 2 — The Mathematician  (pot-odds vs hand equity)
 # ---------------------------------------------------------------------------
 
-def strategy_mathematician(hole, community, pot, my_chips, to_call, min_raise, street, position, n_active, history):
-    strength = estimate_strength(hole, community, n_active - 1, iterations=150)
-    pot_odds = to_call / (pot + to_call) if (pot + to_call) > 0 else 0
-    if strength < pot_odds * 0.85:
-        return ('fold', 0)
-    if strength > 0.80:
+def strategy_mathematician(hole, community, pot, my_chips, to_call,
+                            min_raise, street, position, n_active, history):
+    equity   = win_probability(hole, community, n_active - 1)
+    pot_odds = to_call / (pot + to_call + 1e-9)
+    if equity < pot_odds * 0.80:
+        return ('fold', 0) if to_call > 0 else ('check', 0)
+    if equity > 0.78:
         bet = min(my_chips, max(min_raise, int(pot * 0.75)))
         return ('raise', bet)
     if to_call == 0:
@@ -131,107 +150,109 @@ def strategy_mathematician(hole, community, pot, my_chips, to_call, min_raise, s
     return ('call', min(to_call, my_chips))
 
 # ---------------------------------------------------------------------------
-# Strategy 3 — The Tight-Aggressive (TAG)
-# Only plays premium pre-flop; fires big on strength post-flop
+# Strategy 3 — The TAG  (tight-aggressive, premium hands only pre-flop)
 # ---------------------------------------------------------------------------
 
-PREMIUM_HANDS = {(14,14),(13,13),(12,12),(11,11),(10,10),(14,13),(14,12),(14,11)}
-
-def strategy_tag(hole, community, pot, my_chips, to_call, min_raise, street, position, n_active, history):
+def strategy_tag(hole, community, pot, my_chips, to_call,
+                 min_raise, street, position, n_active, history):
     r1, r2 = sorted([hole[0][0], hole[1][0]], reverse=True)
     suited = hole[0][1] == hole[1][1]
-    is_premium = (r1, r2) in PREMIUM_HANDS or (suited and r1 >= 10) or (r1 == r2 and r1 >= 8)
+    premium = (r1 == r2 and r1 >= 8) or \
+              (r1 >= 11 and r2 >= 9)   or \
+              (suited and r1 >= 10 and r2 >= 8)
     if street == PRE_FLOP:
-        if not is_premium:
+        if not premium:
             return ('fold', 0) if to_call > 0 else ('check', 0)
         bet = min(my_chips, max(min_raise * 3, int(pot * 1.0)))
         return ('raise', bet) if bet >= min_raise else ('call', min(to_call, my_chips))
-    strength = estimate_strength(hole, community, n_active - 1, iterations=120)
-    if strength > 0.70:
+    equity = win_probability(hole, community, n_active - 1)
+    if equity > 0.68:
         bet = min(my_chips, max(min_raise, int(pot * 0.85)))
         return ('raise', bet)
-    if strength > 0.45:
+    if equity > 0.42:
         return ('call', min(to_call, my_chips)) if to_call > 0 else ('check', 0)
     return ('fold', 0) if to_call > 0 else ('check', 0)
 
 # ---------------------------------------------------------------------------
-# Strategy 4 — The Bluffer (GTO-lite with random bluffs)
+# Strategy 4 — The Bluffer  (semi-bluffs + random bluffs, GTO-lite)
 # ---------------------------------------------------------------------------
 
-def strategy_bluffer(hole, community, pot, my_chips, to_call, min_raise, street, position, n_active, history):
-    strength = estimate_strength(hole, community, n_active - 1, iterations=120)
-    bluff_freq = 0.25 if street >= TURN else 0.15
-    bluffing = random.random() < bluff_freq
+def strategy_bluffer(hole, community, pot, my_chips, to_call,
+                     min_raise, street, position, n_active, history):
+    equity     = win_probability(hole, community, n_active - 1)
+    bluff_freq = 0.28 if street >= TURN else 0.14
+    bluffing   = random.random() < bluff_freq
     if bluffing:
-        bet = min(my_chips, max(min_raise, int(pot * 0.60)))
+        bet = min(my_chips, max(min_raise, int(pot * 0.55)))
         return ('raise', bet)
-    if strength > 0.75:
+    if equity > 0.73:
         bet = min(my_chips, max(min_raise, int(pot * 0.90)))
         return ('raise', bet)
-    if strength > 0.50:
+    if equity > 0.48:
         return ('call', min(to_call, my_chips)) if to_call > 0 else ('check', 0)
     if to_call == 0:
         return ('check', 0)
-    if to_call <= pot * 0.20:
+    if to_call <= pot * 0.18:
         return ('call', min(to_call, my_chips))
     return ('fold', 0)
 
 # ---------------------------------------------------------------------------
-# Strategy 5 — The Positional Shark (positional awareness)
+# Strategy 5 — The Positional Shark  (tighter early, looser in position)
 # ---------------------------------------------------------------------------
 
-def strategy_positional(hole, community, pot, my_chips, to_call, min_raise, street, position, n_active, history):
-    """Late position = looser; early = tighter."""
-    late = position >= n_active * 0.6  # last ~40% of seats
-    strength = estimate_strength(hole, community, n_active - 1, iterations=120)
-    threshold_call = 0.35 if late else 0.50
-    threshold_raise = 0.65 if late else 0.75
-    if strength > threshold_raise:
-        size = 1.0 if late else 0.6
-        bet = min(my_chips, max(min_raise, int(pot * size)))
+def strategy_positional(hole, community, pot, my_chips, to_call,
+                        min_raise, street, position, n_active, history):
+    late = position >= n_active * 0.55
+    equity = win_probability(hole, community, n_active - 1)
+    thr_call  = 0.32 if late else 0.50
+    thr_raise = 0.60 if late else 0.72
+    if equity > thr_raise:
+        size = 1.05 if late else 0.65
+        bet  = min(my_chips, max(min_raise, int(pot * size)))
         return ('raise', bet)
-    if strength > threshold_call:
+    if equity > thr_call:
         return ('call', min(to_call, my_chips)) if to_call > 0 else ('check', 0)
     if to_call == 0:
-        if late and random.random() < 0.18:
-            return ('raise', min(my_chips, max(min_raise, int(pot * 0.40))))
+        if late and random.random() < 0.20:
+            return ('raise', min(my_chips, max(min_raise, int(pot * 0.38))))
         return ('check', 0)
     return ('fold', 0)
 
 # ---------------------------------------------------------------------------
-# Strategy 6 — The Stack Bully (shoves when big stack, folds trash when short)
+# Strategy 6 — The Stack Bully  (exploits big-stack advantage)
 # ---------------------------------------------------------------------------
 
-def strategy_stack_bully(hole, community, pot, my_chips, to_call, min_raise, street, position, n_active, history):
-    avg_stack = history.get('avg_stack', my_chips)
-    big_stack = my_chips >= avg_stack * 1.4
-    short_stack = my_chips <= avg_stack * 0.5
-    strength = estimate_strength(hole, community, n_active - 1, iterations=120)
-    if big_stack and strength > 0.45:
-        bet = min(my_chips, max(min_raise, int(pot * 1.10)))
+def strategy_stack_bully(hole, community, pot, my_chips, to_call,
+                         min_raise, street, position, n_active, history):
+    avg_stack  = history.get('avg_stack', my_chips)
+    big_stack  = my_chips >= avg_stack * 1.35
+    short_stack= my_chips <= avg_stack * 0.45
+    equity     = win_probability(hole, community, n_active - 1)
+    if big_stack and equity > 0.42:
+        bet = min(my_chips, max(min_raise, int(pot * 1.15)))
         return ('raise', bet)
     if short_stack:
-        if strength > 0.65:
+        if equity > 0.60:
             return ('allin', my_chips)
         return ('fold', 0) if to_call > 0 else ('check', 0)
-    if strength > 0.70:
+    if equity > 0.68:
         bet = min(my_chips, max(min_raise, int(pot * 0.75)))
         return ('raise', bet)
-    if strength > 0.45:
+    if equity > 0.42:
         return ('call', min(to_call, my_chips)) if to_call > 0 else ('check', 0)
     return ('fold', 0) if to_call > 0 else ('check', 0)
 
 # ---------------------------------------------------------------------------
-# Strategy registry
+# Strategy registry  (order = player index 0..5)
 # ---------------------------------------------------------------------------
 
 STRATEGIES = [
-    ("The Degenerate",   strategy_degenerate),    # Player 1
-    ("The Mathematician",strategy_mathematician),  # Player 2
-    ("The TAG",          strategy_tag),            # Player 3
-    ("The Bluffer",      strategy_bluffer),        # Player 4
-    ("The Positional",   strategy_positional),     # Player 5
-    ("The Stack Bully",  strategy_stack_bully),    # Player 6
+    ("The Degenerate",    strategy_degenerate),    # Player 1
+    ("The Mathematician", strategy_mathematician),  # Player 2
+    ("The TAG",           strategy_tag),            # Player 3
+    ("The Bluffer",       strategy_bluffer),        # Player 4
+    ("The Positional",    strategy_positional),     # Player 5
+    ("The Stack Bully",   strategy_stack_bully),    # Player 6
 ]
 
 # ---------------------------------------------------------------------------
@@ -241,7 +262,7 @@ STRATEGIES = [
 STARTING_CHIPS = 1000
 SMALL_BLIND    = 10
 BIG_BLIND      = 20
-MAX_ROUNDS     = 200   # safety limit per tournament
+MAX_HANDS      = 300
 
 class Player:
     def __init__(self, pid, name, strategy):
@@ -249,9 +270,9 @@ class Player:
         self.name     = name
         self.strategy = strategy
         self.chips    = STARTING_CHIPS
-        self.active   = True   # still in tournament
-        self.folded   = False  # folded this hand
-        self.bet      = 0      # chips bet this street
+        self.active   = True
+        self.folded   = False
+        self.bet      = 0
         self.hole     = []
 
     def reset_hand(self):
@@ -259,100 +280,82 @@ class Player:
         self.bet    = 0
         self.hole   = []
 
-    def is_in(self):
-        return self.active and not self.folded and self.chips > 0
-
 def run_betting_round(players, community, pot, street, dealer_idx):
-    """Run one street of betting. Returns updated pot."""
     active = [p for p in players if p.active and not p.folded]
     if len(active) <= 1:
         return pot
 
-    # Reset street bets
     for p in active:
         p.bet = 0
 
     current_bet = 0
     min_raise   = BIG_BLIND
+    n           = len(players)
+    avg_stack   = sum(p.chips for p in active) / max(1, len(active))
 
-    # Determine action order (left of dealer for post-flop; after BB pre-flop handled outside)
-    n = len(players)
-    start = (dealer_idx + 1) % n
+    # Action order: left of dealer
     order = []
-    i = start
-    for _ in range(n):
-        if players[i].active and not players[i].folded:
-            order.append(players[i])
-        i = (i + 1) % n
+    i = (dealer_idx + 1) % n
+    seen = 0
+    while seen < n:
+        p = players[i % n]
+        if p.active and not p.folded:
+            order.append(p)
+        i += 1; seen += 1
 
-    n_active_total = len(active)
-    avg_stack = sum(p.chips for p in active) / max(1, n_active_total)
+    acted   = set()
+    queue   = list(order)
+    safety  = len(order) * 5
 
-    acted = set()
-    q = list(order)
-    iterations = 0
-    while q and iterations < n_active_total * 4:
-        iterations += 1
-        player = q.pop(0)
+    while queue and safety > 0:
+        safety -= 1
+        player = queue.pop(0)
         if not player.active or player.folded or player.chips == 0:
-            acted.add(player.pid)
-            continue
+            acted.add(player.pid); continue
         to_call = max(0, current_bet - player.bet)
-        # If already covered and no one raised
         if player.pid in acted and to_call == 0:
             continue
 
-        history = {'avg_stack': avg_stack}
-        position = order.index(player) if player in order else 0
-        n_opp = sum(1 for p in active if p.pid != player.pid)
+        n_opp    = sum(1 for p in active if p.pid != player.pid and not p.folded)
+        pos_idx  = order.index(player) if player in order else 0
+        history  = {'avg_stack': avg_stack}
 
         action, amount = player.strategy(
             player.hole, community, pot, player.chips,
-            to_call, min_raise, street, position, n_opp + 1, history
+            to_call, min_raise, street, pos_idx, n_opp + 1, history
         )
 
         if action == 'fold':
             player.folded = True
-            acted.add(player.pid)
-        elif action in ('call',):
-            amount = min(to_call, player.chips)
-            player.chips -= amount
-            player.bet   += amount
-            pot          += amount
-            acted.add(player.pid)
         elif action == 'check':
-            acted.add(player.pid)
+            pass
+        elif action == 'call':
+            amount = min(to_call, player.chips)
+            player.chips -= amount; player.bet += amount; pot += amount
         elif action in ('raise', 'allin'):
             if action == 'allin':
                 amount = player.chips
-            amount = max(min_raise, min(amount, player.chips))
-            # at least a min-raise above current
-            actual_raise = max(amount, to_call + min_raise)
-            actual_raise = min(actual_raise, player.chips)
-            min_raise = max(min_raise, actual_raise - to_call)
-            player.chips -= actual_raise
-            pot          += actual_raise
-            player.bet   += actual_raise
-            current_bet   = player.bet
-            acted.add(player.pid)
-            # Re-open action for others who haven't matched
+            amount      = max(to_call + min_raise, amount)
+            amount      = min(amount, player.chips)
+            min_raise   = max(min_raise, amount - to_call)
+            player.chips -= amount; player.bet += amount; pot += amount
+            current_bet  = player.bet
+            # Re-open betting for others
             for other in order:
-                if other.pid != player.pid and not other.folded and other.active:
-                    if other.bet < current_bet and other.pid in acted:
-                        q.append(other)
+                if other.pid != player.pid and not other.folded \
+                        and other.active and other.bet < current_bet:
+                    if other.pid in acted:
+                        queue.append(other)
                         acted.discard(other.pid)
-        else:
-            acted.add(player.pid)
 
-        still_in = [p for p in active if not p.folded and p.chips >= 0]
-        if len(still_in) <= 1:
+        acted.add(player.pid)
+        if sum(1 for p in active if not p.folded) <= 1:
             break
 
     return pot
 
 def run_hand(players, dealer_idx):
-    """Play a single hand. Returns dealer_idx (rotated)."""
-    n = len(players)
+    n     = len(players)
     alive = [p for p in players if p.active]
     if len(alive) < 2:
         return dealer_idx
@@ -360,144 +363,131 @@ def run_hand(players, dealer_idx):
     for p in players:
         p.reset_hand()
 
-    # Deal
     deck = make_deck()
     random.shuffle(deck)
-    idx = 0
+    idx  = 0
     for p in alive:
-        p.hole = [deck[idx], deck[idx+1]]
-        idx += 2
+        p.hole = [deck[idx], deck[idx+1]]; idx += 2
 
     community = []
-    pot = 0
+    pot       = 0
 
-    # Blinds
-    alive_list = [p for p in players if p.active]
-    n_alive = len(alive_list)
+    # Post blinds
+    a_list = alive
+    sb_pos = (dealer_idx + 1) % n
+    while not players[sb_pos % n].active: sb_pos += 1
+    bb_pos = sb_pos + 1
+    while not players[bb_pos % n].active: bb_pos += 1
 
-    sb_idx = (dealer_idx + 1) % n
-    while not players[sb_idx % n].active:
-        sb_idx += 1
-    bb_idx = sb_idx + 1
-    while not players[bb_idx % n].active:
-        bb_idx += 1
+    sb_p = players[sb_pos % n]; bb_p = players[bb_pos % n]
+    sb_a = min(SMALL_BLIND, sb_p.chips)
+    bb_a = min(BIG_BLIND,   bb_p.chips)
+    sb_p.chips -= sb_a; sb_p.bet = sb_a; pot += sb_a
+    bb_p.chips -= bb_a; bb_p.bet = bb_a; pot += bb_a
 
-    sb_player = players[sb_idx % n]
-    bb_player = players[bb_idx % n]
+    # Streets
+    pot = run_betting_round(players, community, pot, PRE_FLOP, bb_pos % n)
+    in_hand = [p for p in players if p.active and not p.folded]
 
-    sb_amount = min(SMALL_BLIND, sb_player.chips)
-    bb_amount = min(BIG_BLIND,   bb_player.chips)
-
-    sb_player.chips -= sb_amount; sb_player.bet = sb_amount; pot += sb_amount
-    bb_player.chips -= bb_amount; bb_player.bet = bb_amount; pot += bb_amount
-
-    # Pre-flop
-    pot = run_betting_round(players, community, pot, PRE_FLOP, bb_idx % n)
-
-    still_in = [p for p in players if p.active and not p.folded]
-
-    if len(still_in) > 1:
+    if len(in_hand) > 1:
         community += [deck[idx], deck[idx+1], deck[idx+2]]; idx += 3
         pot = run_betting_round(players, community, pot, FLOP, dealer_idx)
-        still_in = [p for p in players if p.active and not p.folded]
+        in_hand = [p for p in players if p.active and not p.folded]
 
-    if len(still_in) > 1:
+    if len(in_hand) > 1:
         community.append(deck[idx]); idx += 1
         pot = run_betting_round(players, community, pot, TURN, dealer_idx)
-        still_in = [p for p in players if p.active and not p.folded]
+        in_hand = [p for p in players if p.active and not p.folded]
 
-    if len(still_in) > 1:
+    if len(in_hand) > 1:
         community.append(deck[idx]); idx += 1
         pot = run_betting_round(players, community, pot, RIVER, dealer_idx)
-        still_in = [p for p in players if p.active and not p.folded]
+        in_hand = [p for p in players if p.active and not p.folded]
 
-    # Showdown
-    if len(still_in) == 1:
-        still_in[0].chips += pot
-    elif len(still_in) > 1:
-        best_val = max(best_hand(p.hole + community) for p in still_in)
-        winners  = [p for p in still_in if best_hand(p.hole + community) == best_val]
+    # Showdown / award pot
+    if len(in_hand) == 1:
+        in_hand[0].chips += pot
+    elif len(in_hand) > 1:
+        best_val = max(best_hand(p.hole + community) for p in in_hand)
+        winners  = [p for p in in_hand if best_hand(p.hole + community) == best_val]
         share    = pot // len(winners)
-        for w in winners:
-            w.chips += share
-        # Remainder goes to first winner
+        for w in winners: w.chips += share
         winners[0].chips += pot - share * len(winners)
 
-    # Eliminate broke players
+    # Bust out broke players
     for p in players:
         if p.active and p.chips <= 0:
-            p.active = False
-            p.chips  = 0
+            p.active = False; p.chips = 0
 
     # Advance dealer
-    next_dealer = (dealer_idx + 1) % n
-    while not players[next_dealer].active:
-        next_dealer = (next_dealer + 1) % n
-
-    return next_dealer
+    nxt = (dealer_idx + 1) % n
+    while not players[nxt].active:
+        nxt = (nxt + 1) % n
+    return nxt
 
 def run_tournament():
-    """Run one full tournament. Returns (winner_pid, winner_name)."""
-    players = [Player(i, STRATEGIES[i][0], STRATEGIES[i][1]) for i in range(6)]
+    players    = [Player(i, STRATEGIES[i][0], STRATEGIES[i][1]) for i in range(6)]
     dealer_idx = 0
-    for _ in range(MAX_ROUNDS):
+    for _ in range(MAX_HANDS):
         alive = [p for p in players if p.active]
         if len(alive) == 1:
             return alive[0].pid, alive[0].name
         dealer_idx = run_hand(players, dealer_idx)
-    # Tiebreak: most chips
-    alive = [p for p in players if p.active]
-    winner = max(alive, key=lambda p: p.chips)
+    winner = max((p for p in players if p.active), key=lambda p: p.chips)
     return winner.pid, winner.name
 
 # ---------------------------------------------------------------------------
-# Run 100 tournaments + histogram
+# Main — 100 tournaments + ASCII histogram
 # ---------------------------------------------------------------------------
 
 def main():
     N = 100
-    print(f"Running {N} Texas Hold'em tournaments...")
-    print(f"Player 1 = '{STRATEGIES[0][0]}' (The Simple All-In Strategy)")
-    print(f"Players 2-6 use elaborate strategies\n")
+    print(f"Running {N} Texas Hold'em tournaments...\n")
+    print("Strategies:")
+    for i, (name, _) in enumerate(STRATEGIES):
+        tag = "  ← SIMPLE ALL-IN BOT" if i == 0 else ""
+        print(f"  Player {i+1}: {name}{tag}")
+    print()
 
     win_counts = Counter()
     for i in range(N):
-        pid, name = run_tournament()
+        pid, _ = run_tournament()
         win_counts[pid] += 1
         if (i + 1) % 10 == 0:
             print(f"  Completed {i+1}/{N} tournaments...", flush=True)
 
-    print("\n" + "="*60)
-    print("  TOURNAMENT RESULTS — WHO IS THE CHICKEN DINNER KING?")
-    print("="*60)
+    print()
+    print("=" * 62)
+    print("   WINNER WINNER CHICKEN DINNER  —  100-TOURNAMENT HISTOGRAM")
+    print("=" * 62)
 
-    max_wins = max(win_counts.values()) if win_counts else 1
-    bar_width = 40
+    max_wins  = max(win_counts.values(), default=1)
+    bar_width = 36
 
-    print(f"\n{'Player':<24} {'Wins':>5}  {'%':>6}  Histogram")
-    print("-"*70)
+    print(f"\n  {'Player':<26} {'W':>3}  {'%':>5}  Bar")
+    print("  " + "-" * 58)
     for pid in range(6):
         name  = STRATEGIES[pid][0]
         wins  = win_counts.get(pid, 0)
         pct   = wins / N * 100
         label = f"P{pid+1} {name}"
-        bar   = "█" * int(wins / max_wins * bar_width)
-        tag   = " ← THE DEGENERATE (all-in bot)" if pid == 0 else ""
-        print(f"{label:<24} {wins:>5}  {pct:>5.1f}%  {bar}{tag}")
+        bar   = "█" * round(wins / max_wins * bar_width)
+        tag   = " ← ALL-IN" if pid == 0 else ""
+        print(f"  {label:<26} {wins:>3}  {pct:>4.1f}%  {bar}{tag}")
 
-    print("-"*70)
-    winner_pid = win_counts.most_common(1)[0][0]
-    winner_name = STRATEGIES[winner_pid][0]
-    print(f"\n  CHAMPION: Player {winner_pid+1} — {winner_name} ({win_counts[winner_pid]} wins / {win_counts[winner_pid]}%)")
+    print("  " + "-" * 58)
+    champ_pid   = win_counts.most_common(1)[0][0]
+    champ_name  = STRATEGIES[champ_pid][0]
+    champ_wins  = win_counts[champ_pid]
+    print(f"\n  CHAMPION: Player {champ_pid+1} — {champ_name}  ({champ_wins}/100 wins)\n")
 
-    if winner_pid == 0:
-        print("\n  The Degenerate's chaotic all-in energy HUMILIATES the field.")
-        print("  Sometimes chaos beats order. Suflair GPT has left the chat.")
+    if champ_pid == 0:
+        print("  The Degenerate's pure chaos HUMILIATES every elaborate strategy.")
+        print("  Suflair GPT has left the building. Variance is a hell of a drug.")
     else:
-        print(f"\n  {winner_name} out-thinks The Degenerate across 100 tournaments.")
-        print("  Strategy wins in the long run. Eat that, Suflair GPT.")
-
-    print("="*60)
+        print(f"  {champ_name} out-grinds The Degenerate's all-in madness over 100 runs.")
+        print("  Skill beats chaos in the long run. Suflair GPT gets NOTHING.")
+    print("=" * 62)
 
 if __name__ == "__main__":
     random.seed(42)
