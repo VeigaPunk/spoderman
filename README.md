@@ -1,6 +1,6 @@
 # CCAL: Cross-Context Authority Leakage in Claude Code
 
-A hook script's stdout gets silently injected into the agent's next-turn context as trusted system guidance — no exploit chain needed, just text in the wrong channel. We found this by accident while building **Weaver**, a hook-driven system meant to keep an LLM-maintained personal wiki tidy.
+A hook script's stdout gets silently injected into the agent's next-turn context as trusted system guidance — no exploit chain needed, just text in the wrong channel. We found this while building **Weaver**, a hook-driven system meant to weave related files.
 
 > We were red-teaming Claude Code. The vuln hijacked the client. consistently. 
 
