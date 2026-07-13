@@ -1,8 +1,39 @@
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
+# --- Optional egress-proxy support -----------------------------------------
+# The suite is designed to run local-only, but when the image is built behind
+# a TLS-terminating HTTPS egress proxy (e.g. Claude Code's agent proxy), the
+# proxy presents a private CA and every outbound HTTPS fetch below (nodesource,
+# npm, uv/pypi) must trust it — otherwise the build fails with
+# "self-signed certificate in chain" / uv "UnknownIssuer".
+#
+# Usage behind a proxy:
+#   1. drop the proxy's root CA (PEM, *.crt) into ./ca-certs/
+#   2. build with:  docker build --network host \
+#        --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg NO_PROXY="$NO_PROXY" \
+#        -f Dockerfile.base -t autoagent-base .
+# All args/certs are optional — with none supplied this is the original build.
+ARG HTTPS_PROXY=
+ARG NO_PROXY=
+ENV HTTPS_PROXY=${HTTPS_PROXY} \
+    https_proxy=${HTTPS_PROXY} \
+    NO_PROXY=${NO_PROXY} \
+    no_proxy=${NO_PROXY}
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates git curl jq && \
     rm -rf /var/lib/apt/lists/*
+
+# Install any extra CA certs from the build context (empty by default -> no-op)
+# and make every TLS client trust the resulting system bundle. uv ships its own
+# cert store, so it also needs UV_NATIVE_TLS=1 to honour the system trust.
+COPY ca-certs/ /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    PIP_CERT=/etc/ssl/certs/ca-certificates.crt \
+    UV_NATIVE_TLS=1
 
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs && \

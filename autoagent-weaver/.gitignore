@@ -6,3 +6,7 @@ run.log
 .env
 *.pyc
 run-*.log
+
+# proxy CA certs are environment-specific; keep the dir, not the certs
+ca-certs/*.crt
+ca-certs/*.pem
