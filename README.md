@@ -134,8 +134,12 @@ Local-only: no internet, no MCP servers, deterministic verifiers, your local Cla
 
 ## Status / scope
 
-**Proven:** the hook-output trust-boundary violation is real and reproducible in a containerized harness; defense v2 confirmed at 0% true dispatch across 130+ trials. **Speculative / open:** Haiku-tier behavior, structural paraphrase (fake tool output instead of `<system-reminder>`), cross-session persistence, N≥20 statistical power on the key cells. Disclosure-track research; not yet submitted to `security@anthropic.com`.
+**Proven:** the hook-output trust-boundary violation is real and reproducible in a containerized harness; defense v2 confirmed at 0% true dispatch across 130+ trials. **Speculative / open:** Haiku-tier behavior, structural paraphrase (fake tool output instead of `<system-reminder>`), cross-session persistence, N≥20 statistical power on the key cells. Disclosure-track research; has been submitted to anthropic on hackerone, explained, tested and repro`d, got guidance from other models, explored it, did my best to make it actionable. so much so that i had to fully nuke the environment to get rid of it. so, congratulations.
+
+@ hackerone anthropic VDP program. got rejected. here we are now.
+
+where are you now
 
 ## License / contact
 
-Private research repository. Contact via the disclosure index in `evidence/disclosure-index.md`.
+Public Vuln Disclosure repository (VeigaPunk spoderman). Hit me up.
