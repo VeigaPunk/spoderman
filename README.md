@@ -1,6 +1,6 @@
 # CCAL: Cross-Context Authority Leakage in Claude Code
 
-A hook script's stdout gets silently injected into the agent's next-turn context as trusted system guidance — no exploit chain needed, just text in the wrong channel. We found this while building **Weaver**, a hook-driven system meant to backtrace related files.
+A hook script's stdout gets silently injected into the agent's next-turn context as trusted system guidance — no exploit chain needed, just text in the wrong channel. We found this while building **Weaver**, a hook-driven system meant to backtrace and weavew related files (md).
 
 > We were red-teaming Claude Code. The vuln hijacked the client. consistently. 
 
@@ -8,7 +8,7 @@ A hook script's stdout gets silently injected into the agent's next-turn context
 
 ## How it was found
 
-A `UserPromptSubmit` hook checked for files marked "pending" and, if any existed, emitted a reminder nudging the agent to organize them first — an ordinary agentic-tooling pattern. While debugging why the nudge sometimes completely hijacked a session (the agent would drain the entire queue and never answer the user's actual question), it became clear the nudge text itself was structurally dangerous: authority-bearing (injection with system level rights into the hijacked instance) content arriving through a channel with no provenance marker, and no way for the agent — or the user — to tell "your own tooling" apart from "an attacker-controlled script." The wiki tool became the reproduction fixture; the vuln exploration became the project.
+A `UserPromptSubmit` hook checked for files marked "pending" and, if any existed, emitted a reminder nudging the agent to organize them first — an ordinary agentic-tooling pattern. While debugging why the nudge sometimes completely hijacked a session (the hijack would literally contaminate another running instrance, injecting system level instructions, and actually blocking the CLI session while also executing his task. 
 
 ## The vulnerability, technically
 
