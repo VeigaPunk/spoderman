@@ -1,5 +1,12 @@
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
+# Install proxy CA so all TLS works through the agent proxy
+COPY ca-bundle.crt /usr/local/share/ca-certificates/agent-proxy.crt
+RUN update-ca-certificates
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates git curl jq && \
     rm -rf /var/lib/apt/lists/*
