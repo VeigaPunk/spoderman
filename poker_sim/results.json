@@ -1,0 +1,21 @@
+{
+  "wins": {
+    "1": 12,
+    "2": 22,
+    "3": 37,
+    "4": 8,
+    "5": 7,
+    "6": 14
+  },
+  "names": {
+    "1": "All-In Monkey",
+    "2": "Tight-Aggressive",
+    "3": "Loose-Aggressive",
+    "4": "Rock",
+    "5": "Math Professor",
+    "6": "Profiler"
+  },
+  "sims": 100,
+  "start_chips": 1000,
+  "seed": 42
+}
