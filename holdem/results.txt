@@ -1,0 +1,17 @@
+Running 100 tournaments: 6 players, 1000 chips each, blinds 10/20 doubling every 15 hands...
+  ... 20/100 tournaments done
+  ... 40/100 tournaments done
+  ... 60/100 tournaments done
+  ... 80/100 tournaments done
+  ... 100/100 tournaments done
+
+==================================================================
+ WINNER HISTOGRAM — 100 six-max tournaments (winner winner chicken dinner)
+==================================================================
+ P1 AllIn-Andrey        | #####################                     18  (18%)
+ P2 Accountant (TAG)    | ################                          14  (14%)
+ P3 Loki (LAG)          | ########################################  35  (35%)
+ P4 Nitalie (Rock)      | ###                                        3  (3%)
+ P5 Blade (Position)    | #####################                     18  (18%)
+ P6 Neo (Calculator)    | ##############                            12  (12%)
+==================================================================
