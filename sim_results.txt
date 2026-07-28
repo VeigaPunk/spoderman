@@ -1,0 +1,44 @@
+==============================================================
+  TEXAS HOLD'EM — 100 TOURNAMENT SIMULATIONS (6 players)
+==============================================================
+
+Players (10,000 chips each, blinds 50/100 escalating):
+  P1:AllIn  <-- "if my_turn then bet = All in fi"
+  P2:GTO
+  P3:TAG
+  P4:LAG
+  P5:PPO
+  P6:Adaptive
+
+  ... 10/100 tournaments complete
+  ... 20/100 tournaments complete
+  ... 30/100 tournaments complete
+  ... 40/100 tournaments complete
+  ... 50/100 tournaments complete
+  ... 60/100 tournaments complete
+  ... 70/100 tournaments complete
+  ... 80/100 tournaments complete
+  ... 90/100 tournaments complete
+  ... 100/100 tournaments complete
+
+==============================================================
+  WINNER WINNER CHICKEN DINNER — HISTOGRAM (n=100)
+==============================================================
+
+      P1:AllIn |####                                    |   3
+        P2:GTO |#############                           |  11
+        P3:TAG |####################################    |  31
+        P4:LAG |#######                                 |   6
+        P5:PPO |##################                      |  15
+   P6:Adaptive |########################################|  34  <== CHAMPION
+
+  FINAL STANDINGS:
+   1. P6:Adaptive — 34 wins (34%)
+   2. P3:TAG — 31 wins (31%)
+   3. P5:PPO — 15 wins (15%)
+   4. P2:GTO — 11 wins (11%)
+   5. P4:LAG — 6 wins (6%)
+   6. P1:AllIn — 3 wins (3%)
+
+  All-in monkey stole 3 tournaments. Variance is undefeated.
+==============================================================
