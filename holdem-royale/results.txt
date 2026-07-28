@@ -1,0 +1,21 @@
+
+==============================================================
+  HOLD'EM ROYALE — WINNER HISTOGRAM (100 tournaments, seed 2026)
+==============================================================
+  LEEROY (ALL-IN) | ████████████████ 14
+  The Professor   | ███████████ 10
+  The Cowboy      | ████████████████████████████████████████ 36
+  The Actuary     | ███████████████████ 17
+  The Rock        | ██████████ 9
+  The Shark       | ████████████████ 14
+--------------------------------------------------------------
+  avg tournament length: 125 hands
+
+  avg finishing position (1 = chicken dinner, 6 = first bust):
+  LEEROY (ALL-IN) | avg 4.98   first-out 67x
+  The Professor   | avg 3.18   first-out 4x
+  The Cowboy      | avg 2.71   first-out 4x
+  The Actuary     | avg 3.68   first-out 6x
+  The Rock        | avg 3.14   first-out 7x
+  The Shark       | avg 3.31   first-out 12x
+==============================================================
