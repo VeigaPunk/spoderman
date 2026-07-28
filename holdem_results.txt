@@ -1,0 +1,47 @@
+==================================================================
+   TEXAS HOLD'EM  —  100 TOURNAMENT SIMULATIONS
+   Player 1 : KAMIKAZE  (if my_turn → bet = All-In)
+   Players 2-6: Elaborate Algorithmic Strategies
+==================================================================
+
+  ... 10/100 tournaments complete
+  ... 20/100 tournaments complete
+  ... 30/100 tournaments complete
+  ... 40/100 tournaments complete
+  ... 50/100 tournaments complete
+  ... 60/100 tournaments complete
+  ... 70/100 tournaments complete
+  ... 80/100 tournaments complete
+  ... 90/100 tournaments complete
+  ... 100/100 tournaments complete
+
+──────────────────────────────────────────────────────────────────
+  RESULTS  —  WINNER WINNER CHICKEN DINNER HISTOGRAM
+──────────────────────────────────────────────────────────────────
+
+  P3 Loose-Passive                    51w   51.0%
+     ██████████████████████████████████████  << ROUNDER
+
+  P2 Tight-Aggressive                 18w   18.0%
+     █████████████
+
+  P4 GTO-Approximation                14w   14.0%
+     ██████████
+
+  P5 Positional Exploiter             14w   14.0%
+     ██████████
+
+  P6 Stack-Pressure Shover             3w    3.0%
+     ██
+
+  P1 KAMIKAZE (All-In)                 0w    0.0%
+       [THE ALL-IN LUNATIC]
+
+──────────────────────────────────────────────────────────────────
+  CHAMPION : Player 3  —  Loose-Passive
+  51 wins out of 100 tournaments
+──────────────────────────────────────────────────────────────────
+
+  Kamikaze P1 got 0 wins. Aggression without intelligence
+  is just charity. GPT Sufflair moment. Humiliated.
+
