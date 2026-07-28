@@ -1,0 +1,1424 @@
+{
+  "sims": 100,
+  "seed": 42,
+  "starting_stack": 1000,
+  "blinds": "10/20, doubling every 12 hands",
+  "wins": {
+    "P1 All-In Andy": 13,
+    "P2 TAG Tanya": 6,
+    "P3 LAG Larry": 30,
+    "P4 Rock Rita": 6,
+    "P5 Odds Otto": 17,
+    "P6 Adaptive Ada": 28
+  },
+  "avg_finish": {
+    "P1 All-In Andy": 4.87,
+    "P2 TAG Tanya": 2.9,
+    "P3 LAG Larry": 3.09,
+    "P4 Rock Rita": 2.85,
+    "P5 Odds Otto": 3.86,
+    "P6 Adaptive Ada": 3.43
+  },
+  "tournaments": [
+    {
+      "sim": 1,
+      "seed": 478163327,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 73
+    },
+    {
+      "sim": 2,
+      "seed": 107420369,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 80
+    },
+    {
+      "sim": 3,
+      "seed": 1181241943,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P5 Odds Otto"
+      ],
+      "hands": 27
+    },
+    {
+      "sim": 4,
+      "seed": 1051802512,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P1 All-In Andy"
+      ],
+      "hands": 79
+    },
+    {
+      "sim": 5,
+      "seed": 958682846,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P4 Rock Rita"
+      ],
+      "hands": 31
+    },
+    {
+      "sim": 6,
+      "seed": 599310825,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 86
+    },
+    {
+      "sim": 7,
+      "seed": 440213415,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto"
+      ],
+      "hands": 80
+    },
+    {
+      "sim": 8,
+      "seed": 373399426,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 72
+    },
+    {
+      "sim": 9,
+      "seed": 1812140441,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto"
+      ],
+      "hands": 40
+    },
+    {
+      "sim": 10,
+      "seed": 136505587,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P1 All-In Andy"
+      ],
+      "hands": 85
+    },
+    {
+      "sim": 11,
+      "seed": 127978094,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 69
+    },
+    {
+      "sim": 12,
+      "seed": 402418010,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 74
+    },
+    {
+      "sim": 13,
+      "seed": 939042955,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 82
+    },
+    {
+      "sim": 14,
+      "seed": 999270936,
+      "winner": "P4 Rock Rita",
+      "finish_order_last_to_first": [
+        "P4 Rock Rita",
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 58
+    },
+    {
+      "sim": 15,
+      "seed": 113971123,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 81
+    },
+    {
+      "sim": 16,
+      "seed": 854001193,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 69
+    },
+    {
+      "sim": 17,
+      "seed": 1801823908,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto"
+      ],
+      "hands": 52
+    },
+    {
+      "sim": 18,
+      "seed": 946785248,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 73
+    },
+    {
+      "sim": 19,
+      "seed": 1929338154,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 73
+    },
+    {
+      "sim": 20,
+      "seed": 1194819984,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 83
+    },
+    {
+      "sim": 21,
+      "seed": 27911967,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 58
+    },
+    {
+      "sim": 22,
+      "seed": 685731524,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 92
+    },
+    {
+      "sim": 23,
+      "seed": 1815115025,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 60
+    },
+    {
+      "sim": 24,
+      "seed": 1461364854,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 54
+    },
+    {
+      "sim": 25,
+      "seed": 1193448329,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P5 Odds Otto"
+      ],
+      "hands": 69
+    },
+    {
+      "sim": 26,
+      "seed": 667779376,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 52
+    },
+    {
+      "sim": 27,
+      "seed": 924765563,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 71
+    },
+    {
+      "sim": 28,
+      "seed": 1445662585,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 86
+    },
+    {
+      "sim": 29,
+      "seed": 438989805,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 75
+    },
+    {
+      "sim": 30,
+      "seed": 398340369,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 65
+    },
+    {
+      "sim": 31,
+      "seed": 1631775357,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P5 Odds Otto"
+      ],
+      "hands": 42
+    },
+    {
+      "sim": 32,
+      "seed": 415393687,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 35
+    },
+    {
+      "sim": 33,
+      "seed": 1541804686,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 94
+    },
+    {
+      "sim": 34,
+      "seed": 1477278577,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P1 All-In Andy",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 85
+    },
+    {
+      "sim": 35,
+      "seed": 1136108454,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 62
+    },
+    {
+      "sim": 36,
+      "seed": 186618211,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P1 All-In Andy"
+      ],
+      "hands": 60
+    },
+    {
+      "sim": 37,
+      "seed": 1973214822,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 52
+    },
+    {
+      "sim": 38,
+      "seed": 536124280,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 82
+    },
+    {
+      "sim": 39,
+      "seed": 1625792787,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 52
+    },
+    {
+      "sim": 40,
+      "seed": 338444264,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 67
+    },
+    {
+      "sim": 41,
+      "seed": 1259191105,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 56
+    },
+    {
+      "sim": 42,
+      "seed": 1553210608,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 51
+    },
+    {
+      "sim": 43,
+      "seed": 825873196,
+      "winner": "P2 TAG Tanya",
+      "finish_order_last_to_first": [
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P1 All-In Andy"
+      ],
+      "hands": 88
+    },
+    {
+      "sim": 44,
+      "seed": 298737106,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 38
+    },
+    {
+      "sim": 45,
+      "seed": 196814233,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 54
+    },
+    {
+      "sim": 46,
+      "seed": 978815630,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 81
+    },
+    {
+      "sim": 47,
+      "seed": 1242911821,
+      "winner": "P2 TAG Tanya",
+      "finish_order_last_to_first": [
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 77
+    },
+    {
+      "sim": 48,
+      "seed": 342703921,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 46
+    },
+    {
+      "sim": 49,
+      "seed": 999829240,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita"
+      ],
+      "hands": 52
+    },
+    {
+      "sim": 50,
+      "seed": 433797840,
+      "winner": "P2 TAG Tanya",
+      "finish_order_last_to_first": [
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 86
+    },
+    {
+      "sim": 51,
+      "seed": 1632629719,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 26
+    },
+    {
+      "sim": 52,
+      "seed": 1193887545,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 72
+    },
+    {
+      "sim": 53,
+      "seed": 1947382419,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 91
+    },
+    {
+      "sim": 54,
+      "seed": 1566942273,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto"
+      ],
+      "hands": 48
+    },
+    {
+      "sim": 55,
+      "seed": 698594025,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 81
+    },
+    {
+      "sim": 56,
+      "seed": 1589915144,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 51
+    },
+    {
+      "sim": 57,
+      "seed": 1525876051,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 43
+    },
+    {
+      "sim": 58,
+      "seed": 899825838,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy",
+        "P4 Rock Rita"
+      ],
+      "hands": 46
+    },
+    {
+      "sim": 59,
+      "seed": 1146660997,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 74
+    },
+    {
+      "sim": 60,
+      "seed": 306671447,
+      "winner": "P2 TAG Tanya",
+      "finish_order_last_to_first": [
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P1 All-In Andy"
+      ],
+      "hands": 90
+    },
+    {
+      "sim": 61,
+      "seed": 735034881,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 81
+    },
+    {
+      "sim": 62,
+      "seed": 1051454923,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 96
+    },
+    {
+      "sim": 63,
+      "seed": 701808367,
+      "winner": "P4 Rock Rita",
+      "finish_order_last_to_first": [
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 79
+    },
+    {
+      "sim": 64,
+      "seed": 1985392498,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 64
+    },
+    {
+      "sim": 65,
+      "seed": 1629748727,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 91
+    },
+    {
+      "sim": 66,
+      "seed": 1159417075,
+      "winner": "P2 TAG Tanya",
+      "finish_order_last_to_first": [
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 81
+    },
+    {
+      "sim": 67,
+      "seed": 943239974,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 68
+    },
+    {
+      "sim": 68,
+      "seed": 1392783743,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P1 All-In Andy",
+        "P3 LAG Larry"
+      ],
+      "hands": 67
+    },
+    {
+      "sim": 69,
+      "seed": 240251661,
+      "winner": "P4 Rock Rita",
+      "finish_order_last_to_first": [
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 86
+    },
+    {
+      "sim": 70,
+      "seed": 983753977,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 44
+    },
+    {
+      "sim": 71,
+      "seed": 137869475,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 44
+    },
+    {
+      "sim": 72,
+      "seed": 1354860540,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto"
+      ],
+      "hands": 61
+    },
+    {
+      "sim": 73,
+      "seed": 1722989659,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 46
+    },
+    {
+      "sim": 74,
+      "seed": 1149938334,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 57
+    },
+    {
+      "sim": 75,
+      "seed": 284277889,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 50
+    },
+    {
+      "sim": 76,
+      "seed": 906164396,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita"
+      ],
+      "hands": 34
+    },
+    {
+      "sim": 77,
+      "seed": 1351531223,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 77
+    },
+    {
+      "sim": 78,
+      "seed": 913224047,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 69
+    },
+    {
+      "sim": 79,
+      "seed": 2144181937,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 66
+    },
+    {
+      "sim": 80,
+      "seed": 1699226064,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 75
+    },
+    {
+      "sim": 81,
+      "seed": 1970753705,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 66
+    },
+    {
+      "sim": 82,
+      "seed": 613628803,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 76
+    },
+    {
+      "sim": 83,
+      "seed": 1137651678,
+      "winner": "P4 Rock Rita",
+      "finish_order_last_to_first": [
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P6 Adaptive Ada",
+        "P1 All-In Andy"
+      ],
+      "hands": 75
+    },
+    {
+      "sim": 84,
+      "seed": 599707677,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P4 Rock Rita",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 67
+    },
+    {
+      "sim": 85,
+      "seed": 1059257080,
+      "winner": "P2 TAG Tanya",
+      "finish_order_last_to_first": [
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 76
+    },
+    {
+      "sim": 86,
+      "seed": 1128466620,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 86
+    },
+    {
+      "sim": 87,
+      "seed": 1840109255,
+      "winner": "P4 Rock Rita",
+      "finish_order_last_to_first": [
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 101
+    },
+    {
+      "sim": 88,
+      "seed": 1715412119,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 87
+    },
+    {
+      "sim": 89,
+      "seed": 1554762903,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 71
+    },
+    {
+      "sim": 90,
+      "seed": 941975480,
+      "winner": "P4 Rock Rita",
+      "finish_order_last_to_first": [
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 57
+    },
+    {
+      "sim": 91,
+      "seed": 594130308,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P4 Rock Rita",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P1 All-In Andy"
+      ],
+      "hands": 63
+    },
+    {
+      "sim": 92,
+      "seed": 2119634399,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 94
+    },
+    {
+      "sim": 93,
+      "seed": 390452952,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P5 Odds Otto",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 41
+    },
+    {
+      "sim": 94,
+      "seed": 202363285,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 49
+    },
+    {
+      "sim": 95,
+      "seed": 470939445,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 56
+    },
+    {
+      "sim": 96,
+      "seed": 656448479,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 61
+    },
+    {
+      "sim": 97,
+      "seed": 687117441,
+      "winner": "P6 Adaptive Ada",
+      "finish_order_last_to_first": [
+        "P6 Adaptive Ada",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P3 LAG Larry",
+        "P1 All-In Andy",
+        "P5 Odds Otto"
+      ],
+      "hands": 83
+    },
+    {
+      "sim": 98,
+      "seed": 1813163240,
+      "winner": "P5 Odds Otto",
+      "finish_order_last_to_first": [
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P2 TAG Tanya",
+        "P6 Adaptive Ada",
+        "P3 LAG Larry",
+        "P1 All-In Andy"
+      ],
+      "hands": 64
+    },
+    {
+      "sim": 99,
+      "seed": 272849424,
+      "winner": "P1 All-In Andy",
+      "finish_order_last_to_first": [
+        "P1 All-In Andy",
+        "P2 TAG Tanya",
+        "P3 LAG Larry",
+        "P5 Odds Otto",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada"
+      ],
+      "hands": 46
+    },
+    {
+      "sim": 100,
+      "seed": 1652563013,
+      "winner": "P3 LAG Larry",
+      "finish_order_last_to_first": [
+        "P3 LAG Larry",
+        "P2 TAG Tanya",
+        "P4 Rock Rita",
+        "P6 Adaptive Ada",
+        "P5 Odds Otto",
+        "P1 All-In Andy"
+      ],
+      "hands": 69
+    }
+  ]
+}
