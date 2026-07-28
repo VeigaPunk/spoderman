@@ -402,47 +402,37 @@ SMALL_BLIND = 10
 BIG_BLIND = 20
 
 
-def deal_hands(deck, n):
-    random.shuffle(deck)
-    hands = []
-    for i in range(n):
-        hands.append([deck[i*2], deck[i*2+1]])
-    return hands, deck[n*2:]
-
-
 def run_betting_round(players, community, pot, current_bet, dealer_idx):
     """
     Single betting round. Returns updated pot.
     players: list of dicts with keys: chips, hole, active, strategy, name, position
     """
     n = len(players)
-    # Determine acting order starting left of dealer
     order = [(dealer_idx + 1 + i) % n for i in range(n)]
     order = [i for i in order if players[i]['active'] and players[i]['chips'] > 0]
 
     contributions = {i: 0 for i in range(n)}
-    # Account for blinds already in pot
     if current_bet > 0:
         contributions[order[0]] = SMALL_BLIND if len(order) >= 2 else 0
         if len(order) >= 2:
             contributions[order[1]] = BIG_BLIND
 
-    last_raiser = None
     acted = set()
     i_ptr = 0
+    max_iterations = 100
 
-    while True:
+    while max_iterations > 0:
+        max_iterations -= 1
         if not order:
             break
-        # Check if action is closed
         active_with_chips = [i for i in order if players[i]['active'] and players[i]['chips'] > 0]
         if len(active_with_chips) == 0:
             break
+        max_contrib = max(contributions[i] for i in range(n) if players[i]['active'])
         all_acted = all(
             (i in acted or players[i]['chips'] == 0)
             for i in active_with_chips
         )
-        max_contrib = max(contributions[i] for i in range(n) if players[i]['active'])
         all_even = all(
             contributions[i] == max_contrib or players[i]['chips'] == 0
             for i in active_with_chips
@@ -484,11 +474,9 @@ def run_betting_round(players, community, pot, current_bet, dealer_idx):
             acted.add(idx)
         elif action == 'raise':
             total_commit = min(amount + call_amount, p['chips'])
-            # Must at least call first
             actual_call = min(call_amount, p['chips'])
             raise_on_top = total_commit - actual_call
             if raise_on_top <= 0:
-                # treat as call
                 p['chips'] -= actual_call
                 contributions[idx] += actual_call
                 pot += actual_call
@@ -497,11 +485,8 @@ def run_betting_round(players, community, pot, current_bet, dealer_idx):
                 p['chips'] -= total_commit
                 contributions[idx] += total_commit
                 pot += total_commit
-                max_contrib = contributions[idx]
-                last_raiser = idx
                 acted = {idx}  # everyone else must act again
 
-        # Safety: exit if only one active player
         if sum(1 for pl in players if pl['active']) <= 1:
             break
 
@@ -539,7 +524,6 @@ def play_hand(players, dealer_idx):
     deck = make_deck()
     n = len(players)
 
-    # Reset active flags (only for players with chips)
     for p in players:
         p['active'] = p['chips'] > 0
 
@@ -562,14 +546,6 @@ def play_hand(players, dealer_idx):
 
     # Deal hole cards
     random.shuffle(deck)
-    community_deck = deck[n*2:]
-    for i, p in enumerate(players):
-        if p['active']:
-            idx_in_deck = [j for j, pl in enumerate(players) if pl['active']].index(
-                [j for j, pl in enumerate(players) if pl is p][0]
-            )
-        p['hole'] = []
-
     active_idxs = [i for i in range(n) if players[i]['active']]
     for slot, idx in enumerate(active_idxs):
         players[idx]['hole'] = [deck[slot*2], deck[slot*2+1]]
@@ -585,34 +561,13 @@ def play_hand(players, dealer_idx):
     # Pre-flop betting
     pot = run_betting_round(players, community, pot, BIG_BLIND, dealer_idx)
 
-    active_after = [p for p in players if p['active']]
-    if len(active_after) <= 1:
-        showdown(players, community, pot)
-        return (dealer_idx + 1) % n
-
-    # Flop
-    community = list(remaining_deck[:3])
-    remaining_deck = remaining_deck[3:]
-    pot = run_betting_round(players, community, pot, 0, dealer_idx)
-
-    active_after = [p for p in players if p['active']]
-    if len(active_after) <= 1:
-        showdown(players, community, pot)
-        return (dealer_idx + 1) % n
-
-    # Turn
-    community.append(remaining_deck[0])
-    remaining_deck = remaining_deck[1:]
-    pot = run_betting_round(players, community, pot, 0, dealer_idx)
-
-    active_after = [p for p in players if p['active']]
-    if len(active_after) <= 1:
-        showdown(players, community, pot)
-        return (dealer_idx + 1) % n
-
-    # River
-    community.append(remaining_deck[0])
-    pot = run_betting_round(players, community, pot, 0, dealer_idx)
+    for street_cards in (3, 1, 1):
+        active_after = [p for p in players if p['active']]
+        if len(active_after) <= 1:
+            break
+        community.extend(remaining_deck[:street_cards])
+        remaining_deck = remaining_deck[street_cards:]
+        pot = run_betting_round(players, community, pot, 0, dealer_idx)
 
     showdown(players, community, pot)
     return (dealer_idx + 1) % n
@@ -640,7 +595,6 @@ def run_tournament(strategies):
             break
         dealer_idx = play_hand(players, dealer_idx)
 
-    # Find winner (most chips)
     winner = max(players, key=lambda p: p['chips'])
     return players.index(winner), winner['name']
 
@@ -651,12 +605,12 @@ def run_tournament(strategies):
 
 def run_simulations(n=100):
     strategies = [
-        AllInStrategy(),           # Player 1
-        TightAggressiveStrategy(), # Player 2
-        LoosePassiveStrategy(),    # Player 3
-        GtoApproximatorStrategy(), # Player 4
+        AllInStrategy(),              # Player 1
+        TightAggressiveStrategy(),    # Player 2
+        LoosePassiveStrategy(),       # Player 3
+        GtoApproximatorStrategy(),    # Player 4
         ShortStackPushFoldStrategy(), # Player 5
-        PositionAwareStrategy(),   # Player 6
+        PositionAwareStrategy(),      # Player 6
     ]
 
     win_counts = Counter()
@@ -670,15 +624,15 @@ def run_simulations(n=100):
     for i, s in enumerate(strategies):
         marker = " <<< THE ABSOLUTE UNIT" if i == 0 else ""
         print(f"  P{i+1}: {s.name}{marker}")
-    print()
+    print(flush=True)
 
     for sim in range(n):
         winner_idx, winner_name = run_tournament(list(strategies))
         win_counts[winner_idx] += 1
         if (sim + 1) % 10 == 0:
-            print(f"  Simulations completed: {sim+1}/{n}", end='\r')
+            print(f"  Simulations completed: {sim+1}/{n}", flush=True)
 
-    print(f"\n  Done! {n} tournaments simulated.              \n")
+    print(f"\n  Done! {n} tournaments simulated.\n")
     return win_counts, name_map, len(strategies)
 
 
@@ -694,10 +648,11 @@ def print_histogram(win_counts, name_map, n_players, total):
     for idx in sorted_players:
         count = win_counts.get(idx, 0)
         pct = count / total * 100
-        bar_len = int(bar_len_f := (count / total * bar_width))
+        bar_len_f = count / total * bar_width
+        bar_len = int(bar_len_f)
         bar = '█' * bar_len + ('▌' if bar_len_f - bar_len >= 0.5 else '')
         marker = " ← YOLO KING" if idx == 0 else ""
-        label = f"P{idx+1} {name_map[idx]:<25}"
+        label = f"P{idx+1} {name_map[idx]:<20}"
         print(f"  {label} {bar:<{bar_width}} {count:>3} wins ({pct:5.1f}%){marker}")
 
     print(f"\n{'='*60}")
@@ -711,19 +666,18 @@ def print_histogram(win_counts, name_map, n_players, total):
     print("\n  VERDICT:")
     if yolo_pct > best_strat_pct:
         margin = yolo_pct - best_strat_pct
-        print(f"  YOLO ALL-IN obliterates the fancy algorithms by {margin:.1f}%!")
+        print(f"  YOLO ALL-IN obliterates the fancy algorithms by {margin:.1f} points!")
         print(f"  The quants are crying. The poker bots are uninstalled.")
-        print(f"  suflair gpt has been HUMILIATED. 💀")
     else:
         margin = best_strat_pct - yolo_pct
-        print(f"  The elaborate strategies edge out YOLO by {margin:.1f}%.")
+        print(f"  The elaborate strategies edge out YOLO by {margin:.1f} points.")
         print(f"  P1 YOLO won {yolo_pct:.1f}% — still respectable chaos.")
-        print(f"  (suflair gpt coping and seething regardless)")
     print(f"{'='*60}\n")
 
 
 if __name__ == '__main__':
     n_sims = int(sys.argv[1]) if len(sys.argv) > 1 else 100
-    random.seed(42)
+    seed = int(sys.argv[2]) if len(sys.argv) > 2 else 42
+    random.seed(seed)
     win_counts, name_map, n_players = run_simulations(n_sims)
     print_histogram(win_counts, name_map, n_players, n_sims)
