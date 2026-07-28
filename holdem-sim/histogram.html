@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hold'em Tournament Wins — 100 Sims</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f9f9f7; color: #0b0b0b;
+    display: flex; justify-content: center; padding: 32px 16px;
+  }
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --series-elab: #2a78d6;
+    --series-leeroy: #eb6834;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    max-width: 760px; width: 100%;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0d0d0d; color: #ffffff; }
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --series-elab: #3987e5;
+      --series-leeroy: #d95926;
+    }
+  }
+  :root[data-theme="dark"] body { background: #0d0d0d; color: #ffffff; }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --series-elab: #3987e5;
+    --series-leeroy: #d95926;
+  }
+  h1 { font-size: 17px; font-weight: 650; color: var(--text-primary); }
+  .sub { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+  .legend {
+    display: flex; gap: 18px; margin: 18px 0 6px; font-size: 12.5px;
+    color: var(--text-secondary); flex-wrap: wrap;
+  }
+  .legend .key { display: inline-flex; align-items: center; gap: 7px; }
+  .legend .swatch { width: 12px; height: 12px; border-radius: 3px; }
+  .chart-wrap { overflow-x: auto; }
+  svg { display: block; width: 100%; height: auto; }
+  .bar-label { font-size: 13px; fill: var(--text-primary); }
+  .bar-sub { font-size: 11px; fill: var(--text-muted); }
+  .val-label { font-size: 12.5px; font-weight: 650; fill: var(--text-primary); }
+  .axis-tick { font-size: 11px; fill: var(--text-muted); }
+  .gridline { stroke: var(--grid); stroke-width: 1; }
+  .baseline { stroke: var(--baseline); stroke-width: 1; }
+  .bar { rx: 0; }
+  .bar-hit { fill: transparent; cursor: default; }
+  .foot { font-size: 12px; color: var(--text-muted); margin-top: 14px; }
+  .tooltip {
+    position: fixed; pointer-events: none; z-index: 10;
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 11px; font-size: 12.5px; line-height: 1.45;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    opacity: 0; transition: opacity 0.1s;
+    max-width: 260px;
+  }
+  .tooltip strong { font-weight: 650; }
+  .tooltip .tip-desc { color: var(--text-secondary); }
+  details { margin-top: 16px; }
+  summary { font-size: 12.5px; color: var(--text-secondary); cursor: pointer; }
+  table { border-collapse: collapse; margin-top: 10px; font-size: 12.5px; width: 100%; }
+  th, td { text-align: left; padding: 5px 12px 5px 0; border-bottom: 1px solid var(--grid); }
+  th { color: var(--text-muted); font-weight: 550; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="viz-root">
+  <h1>Winner winner chicken dinner &mdash; who takes the table?</h1>
+  <div class="sub">Tournament wins across 100 simulated 6-player No-Limit Hold'em
+    tournaments &middot; equal 1,000-chip stacks &middot; escalating blinds &middot;
+    last player standing wins</div>
+
+  <div class="legend">
+    <span class="key"><span class="swatch" style="background: var(--series-elab)"></span>Elaborate strategy (Players 2&ndash;6)</span>
+    <span class="key"><span class="swatch" style="background: var(--series-leeroy)"></span><code style="font-size:11.5px">if my_turn then bet = ALL IN fi</code> (Player 1)</span>
+  </div>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 330" role="img"
+         aria-label="Bar chart of tournament wins per player. LAG Maverick 38, The Profiler 20, TAG Shark 15, Pot-Odds Oracle 13, Leeroy all-in 12, Nit Fortress 2.">
+      <!-- gridlines at 0,10,20,30,40 mapped over x: 200..660 for max 40 -->
+      <g>
+        <line class="gridline" x1="315" y1="8" x2="315" y2="292"/>
+        <line class="gridline" x1="430" y1="8" x2="430" y2="292"/>
+        <line class="gridline" x1="545" y1="8" x2="545" y2="292"/>
+        <line class="gridline" x1="660" y1="8" x2="660" y2="292"/>
+        <line class="baseline" x1="200" y1="8" x2="200" y2="292"/>
+      </g>
+      <g id="bars"></g>
+      <!-- x axis ticks -->
+      <g>
+        <text class="axis-tick" x="200" y="312" text-anchor="middle">0</text>
+        <text class="axis-tick" x="315" y="312" text-anchor="middle">10</text>
+        <text class="axis-tick" x="430" y="312" text-anchor="middle">20</text>
+        <text class="axis-tick" x="545" y="312" text-anchor="middle">30</text>
+        <text class="axis-tick" x="660" y="312" text-anchor="middle">40</text>
+        <text class="axis-tick" x="430" y="328" text-anchor="middle">tournaments won (of 100)</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="foot">Average tournament: 75 hands (min 36, max 122). No strategy
+    knows any other player's strategy &mdash; only public actions, stacks, and the board.</div>
+
+  <details>
+    <summary>Data table</summary>
+    <table>
+      <thead><tr><th>Seat</th><th>Strategy</th><th class="num">Wins</th><th class="num">Win rate</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </details>
+</div>
+
+<div class="tooltip" id="tip"></div>
+
+<script>
+  const DATA = [
+    { seat: "P3", name: "LAG Maverick", wins: 38, kind: "elab",
+      desc: "Loose-aggressive: wide opens, light 3-bets, semi-bluffs every draw, randomized stabs at orphan pots." },
+    { seat: "P6", name: "The Profiler", wins: 20, kind: "elab",
+      desc: "Adaptive exploiter: profiles each opponent's raise/shove/fold frequencies and widens or tightens against them." },
+    { seat: "P2", name: "TAG Shark", wins: 15, kind: "elab",
+      desc: "Tight-aggressive: Chen-formula preflop ranges by position, c-bets with equity, Monte Carlo check before stack-offs." },
+    { seat: "P5", name: "Pot-Odds Oracle", wins: 13, kind: "elab",
+      desc: "Pure mathematician: Monte Carlo equity vs pot odds on every single decision. No reads, only arithmetic." },
+    { seat: "P1", name: "Leeroy (All-In, Always)", wins: 12, kind: "leeroy",
+      desc: "The entire strategy: if my_turn then bet = ALL IN fi." },
+    { seat: "P4", name: "Nit Fortress", wins: 2, kind: "elab",
+      desc: "Ultra-tight premium hunter: folds everything but the top of the deck, then plays for stacks." },
+  ];
+  const X0 = 200, X1 = 660, MAX = 40, TOP = 8, BOT = 292;
+  const rowH = (BOT - TOP) / DATA.length;
+  const barH = 22;
+  const bars = document.getElementById("bars");
+  const tbody = document.getElementById("tbody");
+  const tip = document.getElementById("tip");
+  const svgNS = "http://www.w3.org/2000/svg";
+
+  DATA.forEach((d, i) => {
+    const y = TOP + i * rowH + (rowH - barH) / 2;
+    const w = Math.max(4, (d.wins / MAX) * (X1 - X0));
+    const color = d.kind === "leeroy" ? "var(--series-leeroy)" : "var(--series-elab)";
+
+    // bar: square at baseline, 4px rounded data end
+    const path = document.createElementNS(svgNS, "path");
+    const r = 4;
+    path.setAttribute("d",
+      `M ${X0} ${y} H ${X0 + w - r} Q ${X0 + w} ${y} ${X0 + w} ${y + r}` +
+      ` V ${y + barH - r} Q ${X0 + w} ${y + barH} ${X0 + w - r} ${y + barH}` +
+      ` H ${X0} Z`);
+    path.setAttribute("fill", color);
+    bars.appendChild(path);
+
+    const name = document.createElementNS(svgNS, "text");
+    name.setAttribute("class", "bar-label");
+    name.setAttribute("x", X0 - 10);
+    name.setAttribute("y", y + barH / 2 - 1);
+    name.setAttribute("text-anchor", "end");
+    name.textContent = d.name;
+    bars.appendChild(name);
+
+    const seat = document.createElementNS(svgNS, "text");
+    seat.setAttribute("class", "bar-sub");
+    seat.setAttribute("x", X0 - 10);
+    seat.setAttribute("y", y + barH / 2 + 12);
+    seat.setAttribute("text-anchor", "end");
+    seat.textContent = d.seat;
+    bars.appendChild(seat);
+
+    const val = document.createElementNS(svgNS, "text");
+    val.setAttribute("class", "val-label");
+    val.setAttribute("x", X0 + w + 8);
+    val.setAttribute("y", y + barH / 2 + 4.5);
+    val.textContent = d.wins;
+    bars.appendChild(val);
+
+    // oversized hit target for hover tooltip
+    const hit = document.createElementNS(svgNS, "rect");
+    hit.setAttribute("class", "bar-hit");
+    hit.setAttribute("x", 0); hit.setAttribute("y", TOP + i * rowH);
+    hit.setAttribute("width", 700); hit.setAttribute("height", rowH);
+    hit.addEventListener("pointermove", (e) => {
+      tip.innerHTML = `<strong>${d.seat} &middot; ${d.name}</strong><br>` +
+        `${d.wins} wins (${d.wins}%)<br><span class="tip-desc">${d.desc}</span>`;
+      tip.style.opacity = 1;
+      const pad = 14;
+      let x = e.clientX + pad, ty = e.clientY + pad;
+      const r2 = tip.getBoundingClientRect();
+      if (x + r2.width > window.innerWidth - 8) x = e.clientX - r2.width - pad;
+      if (ty + r2.height > window.innerHeight - 8) ty = e.clientY - r2.height - pad;
+      tip.style.left = x + "px"; tip.style.top = ty + "px";
+    });
+    hit.addEventListener("pointerleave", () => { tip.style.opacity = 0; });
+    bars.appendChild(hit);
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${d.seat}</td><td>${d.name}</td>` +
+      `<td class="num">${d.wins}</td><td class="num">${d.wins}%</td>`;
+    tbody.appendChild(tr);
+  });
+</script>
+</body>
+</html>
