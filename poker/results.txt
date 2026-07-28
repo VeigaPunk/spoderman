@@ -1,0 +1,11 @@
+
+WINNER WINNER CHICKEN DINNER — 100 tournaments (20.5s)
+6 players, 1000 chips each, blinds 5/10 doubling every 12 hands
+==========================================================
+P1 AllInBot   | ###########                              8  <-- the 'if my_turn then ALL IN fi' guy
+P2 TheRock    | ###########                              8
+P3 Berserker  | ########################                 17
+P4 EVMachine  | ####################################     25
+P5 SlowPlayer | ####################                     14
+P6 Profiler   | ######################################## 28
+==========================================================
