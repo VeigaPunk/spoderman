@@ -1,0 +1,17 @@
+... 20/100 tournaments done
+... 40/100 tournaments done
+... 60/100 tournaments done
+... 80/100 tournaments done
+... 100/100 tournaments done
+
+======================================================================
+WINNER HISTOGRAM — 100 full tournaments (6 players, 1000 chips each)
+======================================================================
+P1 AllIn-Andy   [if my_turn then ALL IN fi]    ##################### 12
+P2 TAG-Tanya    [tight-aggressive]             ########################## 15
+P3 LAG-Larry    [loose-aggressive]             ################################### 20
+P4 Nit-Nigel    [premium-only rock]            ############ 7
+P5 MC-Marvin    [monte-carlo equity]           ######################################## 23
+P6 Sherlock     [adaptive profiler]            ######################################## 23
+======================================================================
+WINNER WINNER CHICKEN DINNER (most titles): P5 MC-Marvin    [monte-carlo equity]
