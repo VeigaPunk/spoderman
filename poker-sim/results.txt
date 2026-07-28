@@ -1,0 +1,25 @@
+  ...10/100 tournaments done (4.8s)
+  ...20/100 tournaments done (6.9s)
+  ...30/100 tournaments done (10.5s)
+  ...40/100 tournaments done (12.6s)
+  ...50/100 tournaments done (17.7s)
+  ...60/100 tournaments done (20.3s)
+  ...70/100 tournaments done (23.8s)
+  ...80/100 tournaments done (28.5s)
+  ...90/100 tournaments done (32.3s)
+  ...100/100 tournaments done (33.8s)
+
+==============================================================
+ WINNER WINNER CHICKEN DINNER — 100 TOURNAMENT HISTOGRAM
+ 6 players, 1000 chips each, blinds 10/20 doubling every 25 hands
+==============================================================
+
+ P1 YOLO McAllIn  | ############### 15
+ P2 The Rock      | ######################## 24
+ P3 TAG Titan     | ############# 13
+ P4 LAG Lunatic   | ############### 15
+ P5 The Professor | ############# 13
+ P6 The Profiler  | #################### 20
+
+ Avg tournament length: 90 hands
+ Total wall time: 33.8s
