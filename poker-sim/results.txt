@@ -1,0 +1,22 @@
+Running 100 six-player NLHE tournaments (1000 chips each, blinds 5/10 doubling every 25 hands)...
+  ... 10/100 tournaments done
+  ... 20/100 tournaments done
+  ... 30/100 tournaments done
+  ... 40/100 tournaments done
+  ... 50/100 tournaments done
+  ... 60/100 tournaments done
+  ... 70/100 tournaments done
+  ... 80/100 tournaments done
+  ... 90/100 tournaments done
+  ... 100/100 tournaments done
+
+==================================================================
+ WINNER WINNER CHICKEN DINNER — tournament victories / 100 sims
+==================================================================
+ P1 ALL-IN GREMLIN       6 ( 6%) |███████
+ P2 TAG Terminator      12 (12%) |██████████████
+ P3 LAG Lunatic         12 (12%) |██████████████
+ P4 PotOdds Professor   11 (11%) |█████████████
+ P5 Position Vulture    42 (42%) |██████████████████████████████████████████████████
+ P6 Adaptive Shark      17 (17%) |████████████████████
+==================================================================
