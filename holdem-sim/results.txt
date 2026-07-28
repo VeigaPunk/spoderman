@@ -1,0 +1,20 @@
+
+========================================================================
+  WINNER WINNER CHICKEN DINNER — tournament wins over 100 simulations
+========================================================================
+  LEEROY (ALL-IN)            █████████████████████████ 12
+  The Professor (TAG)        ████████████████████████████████████████ 19
+  Maniac Picasso (LAG)       ██████████████████████████████████████████████████ 24
+  The Rock (Nit)             ███████████████████████ 11
+  Pot-Odds Oracle (Math)     █████████████████████████████ 14
+  The Profiler (Adaptive)    ██████████████████████████████████████████ 20
+------------------------------------------------------------------------
+  avg tournament length: 84 hands
+
+  avg finishing position (1 = winner, 6 = first bust):
+  LEEROY (ALL-IN)            avg 4.82   busted first 47x
+  The Professor (TAG)        avg 3.51   busted first 11x
+  Maniac Picasso (LAG)       avg 3.72   busted first 16x
+  The Rock (Nit)             avg 2.19   busted first 1x
+  Pot-Odds Oracle (Math)     avg 3.45   busted first 11x
+  The Profiler (Adaptive)    avg 3.31   busted first 14x

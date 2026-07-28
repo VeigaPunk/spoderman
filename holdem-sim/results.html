@@ -1,0 +1,142 @@
+<title>Hold'em Tournament Sim — Winner Histogram</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --elaborate: #2a78d6;
+    --leeroy: #eb6834;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 24px 16px;
+    box-sizing: border-box;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --elaborate: #3987e5;
+      --leeroy: #d95926;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --elaborate: #3987e5;
+    --leeroy: #d95926;
+  }
+  .card {
+    max-width: 760px;
+    margin: 0 auto 20px;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: var(--text-secondary); font-size: 13px; margin: 0 0 20px; }
+  .legend { display: flex; gap: 20px; font-size: 12.5px; color: var(--text-secondary); margin-bottom: 16px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .row { display: grid; grid-template-columns: 190px 1fr 44px; align-items: center; gap: 10px; margin: 10px 0; }
+  .row .name { font-size: 13px; text-align: right; color: var(--text-primary); }
+  .row .name small { display: block; color: var(--muted); font-size: 11px; }
+  .track { position: relative; height: 26px; border-left: 2px solid var(--baseline); }
+  .bar {
+    position: absolute; left: 0; top: 3px; bottom: 3px;
+    border-radius: 0 4px 4px 0;
+    min-width: 2px;
+    transition: opacity .12s;
+  }
+  .row:hover .bar { opacity: .82; }
+  .row .val { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .grid-note { color: var(--muted); font-size: 11px; margin-top: 14px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th { text-align: left; color: var(--muted); font-weight: 500; font-size: 12px;
+       border-bottom: 1px solid var(--grid); padding: 6px 8px; }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--grid);
+       font-variant-numeric: tabular-nums; }
+  td:first-child { font-variant-numeric: normal; }
+  tr:last-child td { border-bottom: none; }
+  .tag { font-size: 10.5px; padding: 1px 7px; border-radius: 9px; border: 1px solid var(--border);
+         color: var(--text-secondary); margin-left: 6px; white-space: nowrap; }
+  .callout { max-width: 760px; margin: 0 auto; color: var(--text-secondary); font-size: 13px;
+             padding: 0 4px; line-height: 1.55; }
+  .callout b { color: var(--text-primary); }
+</style>
+<div class="viz-root">
+  <div class="card">
+    <h1>Winner winner chicken dinner</h1>
+    <p class="sub">Tournament wins across 100 six-handed winner-take-all Texas Hold'em simulations
+      &middot; equal starting stacks (1,000) &middot; escalating blinds &middot; no bot knows any other bot's strategy</p>
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--elaborate)"></span>Elaborate strategy</span>
+      <span><span class="swatch" style="background:var(--leeroy)"></span>"if my_turn then bet = ALL IN fi"</span>
+    </div>
+    <div class="row"><div class="name">Maniac Picasso<small>loose-aggressive</small></div>
+      <div class="track"><div class="bar" style="width:100%;background:var(--elaborate)" title="Maniac Picasso (LAG): 24 wins"></div></div>
+      <div class="val">24</div></div>
+    <div class="row"><div class="name">The Profiler<small>adaptive / opponent-modeling</small></div>
+      <div class="track"><div class="bar" style="width:83.3%;background:var(--elaborate)" title="The Profiler (Adaptive): 20 wins"></div></div>
+      <div class="val">20</div></div>
+    <div class="row"><div class="name">The Professor<small>tight-aggressive</small></div>
+      <div class="track"><div class="bar" style="width:79.2%;background:var(--elaborate)" title="The Professor (TAG): 19 wins"></div></div>
+      <div class="val">19</div></div>
+    <div class="row"><div class="name">Pot-Odds Oracle<small>pure-EV mathematician</small></div>
+      <div class="track"><div class="bar" style="width:58.3%;background:var(--elaborate)" title="Pot-Odds Oracle (Math): 14 wins"></div></div>
+      <div class="val">14</div></div>
+    <div class="row"><div class="name">LEEROY<small>all-in, every turn, always</small></div>
+      <div class="track"><div class="bar" style="width:50%;background:var(--leeroy)" title="LEEROY (ALL-IN): 12 wins"></div></div>
+      <div class="val">12</div></div>
+    <div class="row"><div class="name">The Rock<small>ultra-tight nit</small></div>
+      <div class="track"><div class="bar" style="width:45.8%;background:var(--elaborate)" title="The Rock (Nit): 11 wins"></div></div>
+      <div class="val">11</div></div>
+    <div class="grid-note">Bar length = tournaments won out of 100. Average tournament: 84 hands.</div>
+  </div>
+
+  <div class="card">
+    <h1 style="font-size:16px">Full standings</h1>
+    <p class="sub">Same 100 tournaments — how each bot finished on average, and how often it was first to bust.</p>
+    <table>
+      <thead><tr><th>Player</th><th>Wins</th><th>Avg finish (1–6)</th><th>Busted first</th></tr></thead>
+      <tbody>
+        <tr><td>Maniac Picasso <span class="tag">LAG</span></td><td>24</td><td>3.72</td><td>16</td></tr>
+        <tr><td>The Profiler <span class="tag">Adaptive</span></td><td>20</td><td>3.31</td><td>14</td></tr>
+        <tr><td>The Professor <span class="tag">TAG</span></td><td>19</td><td>3.51</td><td>11</td></tr>
+        <tr><td>Pot-Odds Oracle <span class="tag">Math</span></td><td>14</td><td>3.45</td><td>11</td></tr>
+        <tr><td>LEEROY <span class="tag">ALL-IN</span></td><td>12</td><td>4.82</td><td><b>47</b></td></tr>
+        <tr><td>The Rock <span class="tag">Nit</span></td><td>11</td><td>2.19</td><td>1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="callout">
+    <b>The punchline:</b> a strategy that fits in one line of pseudocode still stole 12 tournaments
+    off five carefully engineered opponents — pure variance is a hell of a drug. But the tax is brutal:
+    LEEROY was the <b>first player eliminated in 47 of 100 tournaments</b> and averaged a 4.82 finish.
+    Meanwhile The Rock almost never busts first (1/100, avg finish 2.19) yet wins least — surviving
+    isn't winning. The trophy count went to the bots that applied pressure <i>with</i> a brain behind it.
+  </p>
+</div>
