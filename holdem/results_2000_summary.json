@@ -1,0 +1,62 @@
+{
+ "sims": 2000,
+ "wins": {
+  "P1 JAM-O-TRON": 103,
+  "P2 SOLVERLITE": 419,
+  "P3 BAYES-EXPLOIT": 634,
+  "P4 ICM-GRINDER": 260,
+  "P5 PRESSURE-LAG": 375,
+  "P6 TRAP-ROCK": 209
+ },
+ "win_pct": {
+  "P1 JAM-O-TRON": 0.0515,
+  "P2 SOLVERLITE": 0.2095,
+  "P3 BAYES-EXPLOIT": 0.317,
+  "P4 ICM-GRINDER": 0.13,
+  "P5 PRESSURE-LAG": 0.1875,
+  "P6 TRAP-ROCK": 0.1045
+ },
+ "avg_finish": {
+  "P1 JAM-O-TRON": 5.1085,
+  "P2 SOLVERLITE": 3.11,
+  "P3 BAYES-EXPLOIT": 2.738,
+  "P4 ICM-GRINDER": 3.2645,
+  "P5 PRESSURE-LAG": 3.4655,
+  "P6 TRAP-ROCK": 3.3135
+ },
+ "knockouts": {
+  "P1 JAM-O-TRON": 1536,
+  "P2 SOLVERLITE": 1873,
+  "P3 BAYES-EXPLOIT": 1997,
+  "P4 ICM-GRINDER": 1436,
+  "P5 PRESSURE-LAG": 1888,
+  "P6 TRAP-ROCK": 1270
+ },
+ "peak_stack": {
+  "P1 JAM-O-TRON": 60000,
+  "P2 SOLVERLITE": 60000,
+  "P3 BAYES-EXPLOIT": 60000,
+  "P4 ICM-GRINDER": 60000,
+  "P5 PRESSURE-LAG": 60000,
+  "P6 TRAP-ROCK": 60000
+ },
+ "avg_hands_survived": {
+  "P1 JAM-O-TRON": 11.6965,
+  "P2 SOLVERLITE": 78.1315,
+  "P3 BAYES-EXPLOIT": 84.478,
+  "P4 ICM-GRINDER": 87.1495,
+  "P5 PRESSURE-LAG": 60.992,
+  "P6 TRAP-ROCK": 86.437
+ },
+ "hands": {
+  "min": 3,
+  "max": 268,
+  "mean": 131.741
+ },
+ "elapsed_sec": 63.5,
+ "config": {
+  "seed0": 500000,
+  "start_stack": 10000,
+  "hands_per_level": 20
+ }
+}
