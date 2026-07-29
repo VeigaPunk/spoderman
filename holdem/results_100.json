@@ -1,0 +1,1312 @@
+{
+  "wins": {
+    "AllInMonkey": 13,
+    "TAG-Accountant": 11,
+    "ChaosGremlin": 44,
+    "NitRock": 1,
+    "MathProfessor": 16,
+    "AdaptiveProfiler": 15
+  },
+  "results": [
+    {
+      "sim": 1,
+      "winner": 3,
+      "hands": 119,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 2,
+      "winner": 3,
+      "hands": 125,
+      "placements": [
+        3,
+        6,
+        2,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 3,
+      "winner": 1,
+      "hands": 90,
+      "placements": [
+        1,
+        2,
+        4,
+        3,
+        6,
+        5
+      ]
+    },
+    {
+      "sim": 4,
+      "winner": 3,
+      "hands": 133,
+      "placements": [
+        3,
+        4,
+        5,
+        6,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 5,
+      "winner": 3,
+      "hands": 101,
+      "placements": [
+        3,
+        2,
+        4,
+        1,
+        6,
+        5
+      ]
+    },
+    {
+      "sim": 6,
+      "winner": 2,
+      "hands": 144,
+      "placements": [
+        2,
+        6,
+        5,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 7,
+      "winner": 5,
+      "hands": 163,
+      "placements": [
+        5,
+        6,
+        2,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 8,
+      "winner": 3,
+      "hands": 158,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 9,
+      "winner": 5,
+      "hands": 96,
+      "placements": [
+        5,
+        6,
+        3,
+        4,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 10,
+      "winner": 3,
+      "hands": 106,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 11,
+      "winner": 5,
+      "hands": 154,
+      "placements": [
+        5,
+        6,
+        2,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 12,
+      "winner": 3,
+      "hands": 115,
+      "placements": [
+        3,
+        5,
+        4,
+        2,
+        6,
+        1
+      ]
+    },
+    {
+      "sim": 13,
+      "winner": 3,
+      "hands": 130,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 14,
+      "winner": 5,
+      "hands": 141,
+      "placements": [
+        5,
+        4,
+        6,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 15,
+      "winner": 6,
+      "hands": 97,
+      "placements": [
+        6,
+        4,
+        2,
+        3,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 16,
+      "winner": 5,
+      "hands": 67,
+      "placements": [
+        5,
+        6,
+        3,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 17,
+      "winner": 5,
+      "hands": 107,
+      "placements": [
+        5,
+        4,
+        2,
+        6,
+        1,
+        3
+      ]
+    },
+    {
+      "sim": 18,
+      "winner": 6,
+      "hands": 164,
+      "placements": [
+        6,
+        2,
+        5,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 19,
+      "winner": 6,
+      "hands": 157,
+      "placements": [
+        6,
+        4,
+        2,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 20,
+      "winner": 1,
+      "hands": 103,
+      "placements": [
+        1,
+        4,
+        2,
+        6,
+        5,
+        3
+      ]
+    },
+    {
+      "sim": 21,
+      "winner": 3,
+      "hands": 134,
+      "placements": [
+        3,
+        2,
+        5,
+        4,
+        1,
+        6
+      ]
+    },
+    {
+      "sim": 22,
+      "winner": 2,
+      "hands": 131,
+      "placements": [
+        2,
+        5,
+        4,
+        6,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 23,
+      "winner": 1,
+      "hands": 94,
+      "placements": [
+        1,
+        4,
+        2,
+        3,
+        6,
+        5
+      ]
+    },
+    {
+      "sim": 24,
+      "winner": 5,
+      "hands": 147,
+      "placements": [
+        5,
+        2,
+        4,
+        6,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 25,
+      "winner": 6,
+      "hands": 111,
+      "placements": [
+        6,
+        4,
+        2,
+        3,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 26,
+      "winner": 2,
+      "hands": 107,
+      "placements": [
+        2,
+        6,
+        4,
+        3,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 27,
+      "winner": 3,
+      "hands": 125,
+      "placements": [
+        3,
+        2,
+        4,
+        6,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 28,
+      "winner": 6,
+      "hands": 143,
+      "placements": [
+        6,
+        5,
+        2,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 29,
+      "winner": 6,
+      "hands": 127,
+      "placements": [
+        6,
+        5,
+        4,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 30,
+      "winner": 3,
+      "hands": 108,
+      "placements": [
+        3,
+        5,
+        4,
+        6,
+        1,
+        2
+      ]
+    },
+    {
+      "sim": 31,
+      "winner": 3,
+      "hands": 116,
+      "placements": [
+        3,
+        2,
+        4,
+        5,
+        1,
+        6
+      ]
+    },
+    {
+      "sim": 32,
+      "winner": 1,
+      "hands": 56,
+      "placements": [
+        1,
+        2,
+        3,
+        6,
+        4,
+        5
+      ]
+    },
+    {
+      "sim": 33,
+      "winner": 2,
+      "hands": 107,
+      "placements": [
+        2,
+        6,
+        3,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 34,
+      "winner": 3,
+      "hands": 115,
+      "placements": [
+        3,
+        6,
+        4,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 35,
+      "winner": 3,
+      "hands": 128,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 36,
+      "winner": 3,
+      "hands": 145,
+      "placements": [
+        3,
+        6,
+        2,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 37,
+      "winner": 2,
+      "hands": 110,
+      "placements": [
+        2,
+        4,
+        6,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 38,
+      "winner": 1,
+      "hands": 50,
+      "placements": [
+        1,
+        3,
+        4,
+        6,
+        5,
+        2
+      ]
+    },
+    {
+      "sim": 39,
+      "winner": 3,
+      "hands": 130,
+      "placements": [
+        3,
+        6,
+        4,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 40,
+      "winner": 3,
+      "hands": 124,
+      "placements": [
+        3,
+        2,
+        6,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 41,
+      "winner": 3,
+      "hands": 112,
+      "placements": [
+        3,
+        6,
+        2,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 42,
+      "winner": 6,
+      "hands": 142,
+      "placements": [
+        6,
+        2,
+        4,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 43,
+      "winner": 1,
+      "hands": 66,
+      "placements": [
+        1,
+        3,
+        4,
+        6,
+        5,
+        2
+      ]
+    },
+    {
+      "sim": 44,
+      "winner": 3,
+      "hands": 142,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 45,
+      "winner": 3,
+      "hands": 122,
+      "placements": [
+        3,
+        6,
+        2,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 46,
+      "winner": 6,
+      "hands": 106,
+      "placements": [
+        6,
+        4,
+        3,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 47,
+      "winner": 3,
+      "hands": 123,
+      "placements": [
+        3,
+        6,
+        2,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 48,
+      "winner": 3,
+      "hands": 125,
+      "placements": [
+        3,
+        6,
+        2,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 49,
+      "winner": 1,
+      "hands": 65,
+      "placements": [
+        1,
+        4,
+        3,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "sim": 50,
+      "winner": 5,
+      "hands": 112,
+      "placements": [
+        5,
+        4,
+        3,
+        6,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 51,
+      "winner": 2,
+      "hands": 147,
+      "placements": [
+        2,
+        6,
+        4,
+        1,
+        5,
+        3
+      ]
+    },
+    {
+      "sim": 52,
+      "winner": 3,
+      "hands": 102,
+      "placements": [
+        3,
+        2,
+        4,
+        6,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 53,
+      "winner": 6,
+      "hands": 117,
+      "placements": [
+        6,
+        4,
+        2,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 54,
+      "winner": 5,
+      "hands": 142,
+      "placements": [
+        5,
+        2,
+        3,
+        4,
+        6,
+        1
+      ]
+    },
+    {
+      "sim": 55,
+      "winner": 3,
+      "hands": 104,
+      "placements": [
+        3,
+        2,
+        4,
+        6,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 56,
+      "winner": 3,
+      "hands": 137,
+      "placements": [
+        3,
+        6,
+        4,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 57,
+      "winner": 3,
+      "hands": 129,
+      "placements": [
+        3,
+        6,
+        4,
+        5,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 58,
+      "winner": 3,
+      "hands": 127,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 59,
+      "winner": 3,
+      "hands": 118,
+      "placements": [
+        3,
+        6,
+        2,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "sim": 60,
+      "winner": 6,
+      "hands": 110,
+      "placements": [
+        6,
+        4,
+        3,
+        5,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 61,
+      "winner": 1,
+      "hands": 67,
+      "placements": [
+        1,
+        3,
+        2,
+        4,
+        6,
+        5
+      ]
+    },
+    {
+      "sim": 62,
+      "winner": 2,
+      "hands": 129,
+      "placements": [
+        2,
+        6,
+        3,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 63,
+      "winner": 1,
+      "hands": 49,
+      "placements": [
+        1,
+        4,
+        6,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "sim": 64,
+      "winner": 3,
+      "hands": 145,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 65,
+      "winner": 5,
+      "hands": 123,
+      "placements": [
+        5,
+        2,
+        6,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 66,
+      "winner": 6,
+      "hands": 113,
+      "placements": [
+        6,
+        5,
+        4,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 67,
+      "winner": 4,
+      "hands": 143,
+      "placements": [
+        4,
+        2,
+        1,
+        6,
+        3,
+        5
+      ]
+    },
+    {
+      "sim": 68,
+      "winner": 6,
+      "hands": 149,
+      "placements": [
+        6,
+        2,
+        4,
+        3,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 69,
+      "winner": 5,
+      "hands": 136,
+      "placements": [
+        5,
+        6,
+        3,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 70,
+      "winner": 3,
+      "hands": 107,
+      "placements": [
+        3,
+        6,
+        4,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 71,
+      "winner": 2,
+      "hands": 162,
+      "placements": [
+        2,
+        6,
+        4,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 72,
+      "winner": 3,
+      "hands": 114,
+      "placements": [
+        3,
+        6,
+        4,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 73,
+      "winner": 2,
+      "hands": 135,
+      "placements": [
+        2,
+        6,
+        4,
+        3,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 74,
+      "winner": 3,
+      "hands": 97,
+      "placements": [
+        3,
+        2,
+        4,
+        6,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 75,
+      "winner": 1,
+      "hands": 71,
+      "placements": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        5
+      ]
+    },
+    {
+      "sim": 76,
+      "winner": 3,
+      "hands": 107,
+      "placements": [
+        3,
+        6,
+        2,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 77,
+      "winner": 5,
+      "hands": 106,
+      "placements": [
+        5,
+        4,
+        2,
+        6,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 78,
+      "winner": 3,
+      "hands": 126,
+      "placements": [
+        3,
+        6,
+        2,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 79,
+      "winner": 5,
+      "hands": 138,
+      "placements": [
+        5,
+        4,
+        6,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 80,
+      "winner": 3,
+      "hands": 136,
+      "placements": [
+        3,
+        6,
+        4,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 81,
+      "winner": 5,
+      "hands": 114,
+      "placements": [
+        5,
+        3,
+        4,
+        6,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 82,
+      "winner": 6,
+      "hands": 163,
+      "placements": [
+        6,
+        3,
+        4,
+        2,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 83,
+      "winner": 6,
+      "hands": 118,
+      "placements": [
+        6,
+        5,
+        4,
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "sim": 84,
+      "winner": 3,
+      "hands": 141,
+      "placements": [
+        3,
+        6,
+        2,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 85,
+      "winner": 3,
+      "hands": 134,
+      "placements": [
+        3,
+        2,
+        6,
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 86,
+      "winner": 3,
+      "hands": 131,
+      "placements": [
+        3,
+        6,
+        2,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 87,
+      "winner": 2,
+      "hands": 113,
+      "placements": [
+        2,
+        6,
+        4,
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "sim": 88,
+      "winner": 5,
+      "hands": 123,
+      "placements": [
+        5,
+        4,
+        6,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 89,
+      "winner": 3,
+      "hands": 96,
+      "placements": [
+        3,
+        4,
+        5,
+        6,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 90,
+      "winner": 3,
+      "hands": 112,
+      "placements": [
+        3,
+        6,
+        1,
+        5,
+        4,
+        2
+      ]
+    },
+    {
+      "sim": 91,
+      "winner": 3,
+      "hands": 121,
+      "placements": [
+        3,
+        2,
+        4,
+        6,
+        5,
+        1
+      ]
+    },
+    {
+      "sim": 92,
+      "winner": 1,
+      "hands": 63,
+      "placements": [
+        1,
+        4,
+        2,
+        6,
+        3,
+        5
+      ]
+    },
+    {
+      "sim": 93,
+      "winner": 3,
+      "hands": 111,
+      "placements": [
+        3,
+        5,
+        4,
+        6,
+        2,
+        1
+      ]
+    },
+    {
+      "sim": 94,
+      "winner": 5,
+      "hands": 160,
+      "placements": [
+        5,
+        2,
+        6,
+        3,
+        4,
+        1
+      ]
+    },
+    {
+      "sim": 95,
+      "winner": 3,
+      "hands": 108,
+      "placements": [
+        3,
+        2,
+        4,
+        5,
+        6,
+        1
+      ]
+    },
+    {
+      "sim": 96,
+      "winner": 2,
+      "hands": 158,
+      "placements": [
+        2,
+        6,
+        5,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "sim": 97,
+      "winner": 1,
+      "hands": 61,
+      "placements": [
+        1,
+        4,
+        3,
+        5,
+        6,
+        2
+      ]
+    },
+    {
+      "sim": 98,
+      "winner": 6,
+      "hands": 128,
+      "placements": [
+        6,
+        3,
+        4,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "sim": 99,
+      "winner": 3,
+      "hands": 124,
+      "placements": [
+        3,
+        2,
+        4,
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "sim": 100,
+      "winner": 1,
+      "hands": 75,
+      "placements": [
+        1,
+        4,
+        2,
+        6,
+        5,
+        3
+      ]
+    }
+  ]
+}
