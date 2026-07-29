@@ -1,0 +1,21 @@
+{
+  "sims": 100,
+  "seed": 42,
+  "wins": {
+    "P1 YOLO All-In": 7,
+    "P2 TAG Shark": 5,
+    "P3 LAG Blaze": 41,
+    "P4 Rock Nit": 2,
+    "P5 Math Professor": 15,
+    "P6 Adaptron": 30
+  },
+  "avg_finish": {
+    "P1 YOLO All-In": 5.07,
+    "P2 TAG Shark": 3.1,
+    "P3 LAG Blaze": 2.77,
+    "P4 Rock Nit": 3.11,
+    "P5 Math Professor": 4.19,
+    "P6 Adaptron": 2.76
+  },
+  "total_hands": 17695
+}

@@ -1,0 +1,21 @@
+
+WINNER WINNER CHICKEN DINNER — tournament champions (100 sims)
+==============================================================================
+P1 YOLO All-In       | █████████                                            7  (7%)
+P2 TAG Shark         | ██████                                               5  (5%)
+P3 LAG Blaze         | ██████████████████████████████████████████████████  41  (41%)
+P4 Rock Nit          | ██                                                   2  (2%)
+P5 Math Professor    | ██████████████████                                  15  (15%)
+P6 Adaptron          | █████████████████████████████████████               30  (30%)
+==============================================================================
+
+player                wins   win%  avg finish
+----------------------------------------------
+P1 YOLO All-In           7     7%        5.07
+P2 TAG Shark             5     5%        3.10
+P3 LAG Blaze            41    41%        2.77
+P4 Rock Nit              2     2%        3.11
+P5 Math Professor       15    15%        4.19
+P6 Adaptron             30    30%        2.76
+
+total hands dealt: 17695   wall time: 93.5s
