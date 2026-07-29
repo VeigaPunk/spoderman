@@ -1,0 +1,177 @@
+<meta charset="utf-8">
+<title>Winner Winner Chicken Dinner — 100 Hold'em Sims</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --elaborate: #2a78d6;
+    --shovebot: #eb6834;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 24px 16px 48px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --elaborate: #3987e5;
+      --shovebot: #d95926;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --elaborate: #3987e5;
+    --shovebot: #d95926;
+  }
+  .card {
+    max-width: 760px; margin: 0 auto; background: var(--surface-1);
+    border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px;
+  }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  .sub { color: var(--text-secondary); font-size: 13px; margin: 0 0 18px; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px;
+            color: var(--text-secondary); margin: 0 0 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .chartwrap { overflow-x: auto; }
+  svg { display: block; }
+  svg text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .rowlabel { fill: var(--text-secondary); font-size: 13px; }
+  .val { fill: var(--text-primary); font-size: 13px; font-weight: 600; }
+  .tick { fill: var(--muted); font-size: 11px; }
+  .axis-title { fill: var(--muted); font-size: 11.5px; }
+  .bar-elaborate { fill: var(--elaborate); }
+  .bar-shovebot { fill: var(--shovebot); }
+  .bar:hover { opacity: 0.82; }
+  table { border-collapse: collapse; width: 100%; margin-top: 26px; font-size: 13px; }
+  caption { text-align: left; color: var(--text-secondary); font-size: 12.5px;
+            padding-bottom: 8px; }
+  th { text-align: left; color: var(--muted); font-weight: 600;
+       border-bottom: 1px solid var(--baseline); padding: 6px 10px 6px 0; }
+  td { border-bottom: 1px solid var(--grid); padding: 6px 10px 6px 0;
+       color: var(--text-primary); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .foot { color: var(--muted); font-size: 12px; margin-top: 18px; }
+</style>
+<div class="viz-root">
+<div class="card">
+  <h1>Winner winner chicken dinner 🍗</h1>
+  <p class="sub">Tournament wins across 100 six-max no-limit Hold'em sims —
+    20,679 hands, equal starting stacks (100&#8202;bb), escalating blinds,
+    last player with all the chips takes the sim.</p>
+
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--elaborate)"></i>
+      Elaborate strategy (P2–P6)</span>
+    <span><i class="swatch" style="background:var(--shovebot)"></i>
+      <code>if my_turn then bet = All in fi</code> (P1)</span>
+  </div>
+
+  <div class="chartwrap">
+  <svg viewBox="0 0 680 308" width="680" height="308" role="img"
+       aria-label="Bar chart of tournament wins per player over 100 simulations">
+    <!-- gridlines at 0/10/20/30/40 wins; plot x: 170..590 -->
+    <g>
+      <line x1="170" y1="10" x2="170" y2="258" stroke="var(--baseline)" stroke-width="1"/>
+      <line x1="275" y1="10" x2="275" y2="258" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="380" y1="10" x2="380" y2="258" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="485" y1="10" x2="485" y2="258" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="590" y1="10" x2="590" y2="258" stroke="var(--grid)" stroke-width="1"/>
+      <text class="tick" x="170" y="274" text-anchor="middle">0</text>
+      <text class="tick" x="275" y="274" text-anchor="middle">10</text>
+      <text class="tick" x="380" y="274" text-anchor="middle">20</text>
+      <text class="tick" x="485" y="274" text-anchor="middle">30</text>
+      <text class="tick" x="590" y="274" text-anchor="middle">40</text>
+      <text class="axis-title" x="380" y="298" text-anchor="middle">tournament wins (out of 100)</text>
+    </g>
+    <!-- bars: 28px tall, 12px gap, 4px rounded data-end -->
+    <g class="bar">
+      <title>P4 LagLoki — 40 wins (40%), avg finish 2.93</title>
+      <text class="rowlabel" x="160" y="33" text-anchor="end">P4 LagLoki</text>
+      <path class="bar-elaborate" d="M170 15 h416 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-416 z"/>
+      <text class="val" x="598" y="33">40</text>
+    </g>
+    <g class="bar">
+      <title>P6 Sherlock — 27 wins (27%), avg finish 3.27</title>
+      <text class="rowlabel" x="160" y="73" text-anchor="end">P6 Sherlock</text>
+      <path class="bar-elaborate" d="M170 55 h279.5 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-279.5 z"/>
+      <text class="val" x="461.5" y="73">27</text>
+    </g>
+    <g class="bar">
+      <title>P5 CaseyCalculator — 19 wins (19%), avg finish 3.69</title>
+      <text class="rowlabel" x="160" y="113" text-anchor="end">P5 CaseyCalculator</text>
+      <path class="bar-elaborate" d="M170 95 h195.5 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-195.5 z"/>
+      <text class="val" x="377.5" y="113">19</text>
+    </g>
+    <g class="bar">
+      <title>P1 AllInAnnie — 5 wins (5%), avg finish 5.16, busted first 61 times</title>
+      <text class="rowlabel" x="160" y="153" text-anchor="end">P1 AllInAnnie</text>
+      <path class="bar-shovebot" d="M170 135 h48.5 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-48.5 z"/>
+      <text class="val" x="230.5" y="153">5</text>
+    </g>
+    <g class="bar">
+      <title>P3 TagTitan — 5 wins (5%), avg finish 3.14</title>
+      <text class="rowlabel" x="160" y="193" text-anchor="end">P3 TagTitan</text>
+      <path class="bar-elaborate" d="M170 175 h48.5 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-48.5 z"/>
+      <text class="val" x="230.5" y="193">5</text>
+    </g>
+    <g class="bar">
+      <title>P2 TheRock — 4 wins (4%), avg finish 2.81</title>
+      <text class="rowlabel" x="160" y="233" text-anchor="end">P2 TheRock</text>
+      <path class="bar-elaborate" d="M170 215 h38 a4 4 0 0 1 4 4 v20 a4 4 0 0 1 -4 4 h-38 z"/>
+      <text class="val" x="220" y="233">4</text>
+    </g>
+  </svg>
+  </div>
+
+  <table>
+    <caption>Full standings — same data as the chart, plus finishing stats.</caption>
+    <thead>
+      <tr><th>Player</th><th>Strategy style</th><th class="num">Wins</th>
+          <th class="num">Win %</th><th class="num">Avg finish</th>
+          <th class="num">Busted first</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>P4 LagLoki</td><td>Loose-aggressive pressure</td>
+          <td class="num">40</td><td class="num">40%</td><td class="num">2.93</td><td class="num">4</td></tr>
+      <tr><td>P6 Sherlock</td><td>Adaptive opponent profiler</td>
+          <td class="num">27</td><td class="num">27%</td><td class="num">3.27</td><td class="num">22</td></tr>
+      <tr><td>P5 CaseyCalculator</td><td>Monte Carlo equity vs pot odds</td>
+          <td class="num">19</td><td class="num">19%</td><td class="num">3.69</td><td class="num">11</td></tr>
+      <tr><td>P1 AllInAnnie</td><td><code>if my_turn then bet = All in fi</code></td>
+          <td class="num">5</td><td class="num">5%</td><td class="num">5.16</td><td class="num">61</td></tr>
+      <tr><td>P3 TagTitan</td><td>Tight-aggressive textbook</td>
+          <td class="num">5</td><td class="num">5%</td><td class="num">3.14</td><td class="num">1</td></tr>
+      <tr><td>P2 TheRock</td><td>Ultra-tight nit</td>
+          <td class="num">4</td><td class="num">4%</td><td class="num">2.81</td><td class="num">1</td></tr>
+    </tbody>
+  </table>
+
+  <p class="foot">Reproduce: <code>python -m poker_sim.simulate --sims 100 --seed 7</code>.
+     No strategy could observe another's code — only public actions at the table.</p>
+</div>
+</div>
