@@ -1,0 +1,308 @@
+<title>Texas Hold'em: 100-Tournament Results</title>
+<style>
+  /* ── design tokens ─────────────────────────────────────────────────── */
+  :root {
+    --felt:      #081e10;
+    --felt-2:    #0c2a17;
+    --felt-3:    #12371f;
+    --felt-4:    #1a4a2c;
+    --border:    rgba(201,168,53,0.18);
+    --gold:      #c9a835;
+    --gold-mute: rgba(201,168,53,0.12);
+    --cream:     #f2ede0;
+    --cream-2:   #b8c8b0;
+    --cream-3:   #6b8f72;
+    /* player palette – validated categorical, dark-surface steps */
+    --c0: #e66767;   /* Maniac   – red      */
+    --c1: #3987e5;   /* Calc     – blue     */
+    --c2: #d95926;   /* TAG      – orange   */
+    --c3: #c9a835;   /* Bluffer  – gold     */
+    --c4: #c98500;   /* Station  – amber    */
+    --c5: #d55181;   /* Position – magenta  */
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--felt);
+    color: var(--cream);
+    min-height: 100vh;
+    padding: 3rem 1.5rem 4rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── layout ─────────────────────────────────────────────────────────── */
+  .page { max-width: 740px; margin: 0 auto; }
+
+  /* ── header ─────────────────────────────────────────────────────────── */
+  .eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--cream-3);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    font-weight: 800; line-height: 1.12; text-wrap: balance;
+    color: var(--cream);
+  }
+  h1 .accent { color: var(--gold); }
+  .subtitle {
+    margin-top: 0.75rem; max-width: 54ch;
+    font-size: 0.875rem; color: var(--cream-2); line-height: 1.55;
+  }
+
+  /* suits row */
+  .suits {
+    display: flex; gap: 0.75rem; margin-top: 1.1rem;
+    font-size: 1.05rem; color: var(--cream-3); user-select: none;
+  }
+  .suits .red { color: #c0453a; }
+
+  /* ── divider ─────────────────────────────────────────────────────────── */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  /* ── chart ───────────────────────────────────────────────────────────── */
+  .chart-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 1.1rem; gap: 1rem;
+  }
+  .chart-label {
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--cream-3);
+  }
+  .n-label {
+    font-size: 0.68rem; color: var(--cream-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bars { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  /* one player row */
+  .row {
+    display: grid;
+    grid-template-columns: 30px 1fr 56px;
+    gap: 0.85rem;
+    align-items: center;
+  }
+
+  /* rank bubble */
+  .rank {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.66rem; font-weight: 800; letter-spacing: -0.01em;
+    flex-shrink: 0; border: 1.5px solid transparent;
+  }
+
+  /* name + bar */
+  .bar-col { display: flex; flex-direction: column; gap: 0.32rem; }
+  .name-row {
+    display: flex; align-items: center; gap: 0.45rem;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--cream); line-height: 1;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.56rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.18em 0.55em; border-radius: 2px; line-height: 1.6;
+  }
+  .badge-winner     { background: var(--gold); color: var(--felt); }
+  .badge-challenger { background: var(--c0);   color: #fff; }
+
+  .track {
+    background: var(--felt-4); border-radius: 4px;
+    height: 24px; overflow: hidden; position: relative;
+  }
+  .fill {
+    height: 100%; border-radius: 4px;
+    width: 0;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+  }
+  .fill::after {       /* right edge highlight */
+    content: '';
+    position: absolute; right: 0; top: 2px; bottom: 2px;
+    width: 2px;
+    background: rgba(255,255,255,0.30);
+    border-radius: 1px;
+  }
+
+  /* stat block */
+  .stat { text-align: right; line-height: 1; }
+  .wins {
+    font-size: 1.4rem; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .pct {
+    font-size: 0.65rem; color: var(--cream-3);
+    font-variant-numeric: tabular-nums;
+    margin-top: 0.1rem;
+  }
+
+  /* winner row special */
+  .row-winner .track { box-shadow: 0 0 0 1px rgba(201,168,53,0.30); }
+  .row-winner .wins  { color: var(--gold); }
+
+  /* separator between adjacent tied rows */
+  .row-tied-separator { border-top: 1px dashed var(--border); margin: 0; }
+
+  /* ── verdict cards ──────────────────────────────────────────────────── */
+  .verdicts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+    gap: 0.9rem; margin-top: 0;
+  }
+  .card {
+    background: var(--felt-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.1rem 1.15rem 1.15rem;
+  }
+  .card-icon  { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .card-title {
+    font-size: 0.68rem; letter-spacing: 0.10em;
+    text-transform: uppercase; color: var(--cream-3);
+    margin-bottom: 0.35rem;
+  }
+  .card-body  { font-size: 0.83rem; color: var(--cream-2); line-height: 1.50; }
+  .card-body strong { color: var(--cream); }
+
+  /* ── footnote ───────────────────────────────────────────────────────── */
+  .footnote {
+    margin-top: 2.25rem;
+    font-size: 0.68rem; color: var(--cream-3);
+    letter-spacing: 0.04em; line-height: 1.6;
+  }
+
+  /* ── responsive ─────────────────────────────────────────────────────── */
+  @media (max-width: 460px) {
+    .row { grid-template-columns: 24px 1fr 48px; gap: 0.55rem; }
+    .rank { width: 24px; height: 24px; font-size: 0.58rem; }
+    .wins { font-size: 1.1rem; }
+  }
+</style>
+
+<div class="page">
+
+  <!-- header -->
+  <p class="eyebrow">♠ Texas Hold'em &middot; 6 Players &middot; 100 Tournaments</p>
+  <h1>The <span class="accent">Elaborate</span> Strategies<br>vs. The Pure Maniac</h1>
+  <p class="subtitle">
+    All 6 players start with 1,000 chips. Blinds escalate every 30 hands.
+    Last player standing wins the tournament.
+    Player&nbsp;1 shoves all-in on every single action.
+    Players 2–6 run distinct algorithmic strategies.
+  </p>
+  <div class="suits" aria-hidden="true">
+    <span>♠</span><span class="red">♥</span><span>♣</span><span class="red">♦</span>
+  </div>
+
+  <hr class="rule">
+
+  <!-- chart -->
+  <div class="chart-head">
+    <span class="chart-label">Tournament wins — ranked</span>
+    <span class="n-label">n = 100 simulations</span>
+  </div>
+
+  <div class="bars" id="bars"></div>
+
+  <hr class="rule">
+
+  <!-- verdicts -->
+  <div class="verdicts">
+    <div class="card">
+      <div class="card-icon">🃏</div>
+      <div class="card-title">Champion</div>
+      <div class="card-body">
+        <strong>The Bluffer</strong> won <strong>29 / 100</strong> tournaments —
+        nearly 3× the Maniac. Polarised betting (value or air, nothing in between)
+        extracts max value from passive callers and folds out aggression on good bluff
+        spots.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💣</div>
+      <div class="card-title">Maniac Verdict</div>
+      <div class="card-body">
+        Always going all-in landed only <strong>12 wins</strong>.
+        Variance gifts early double-ups but pot-equity math grinds it out.
+        Skilled opponents take the right side of every shove.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Strategy Edge</div>
+      <div class="card-body">
+        Worst elaborate strategy still tied the Maniac. Best elaborate strategy
+        beat it by <strong>+17 wins (141&thinsp;%)</strong>.
+        Information asymmetry and fold equity are real.
+      </div>
+    </div>
+  </div>
+
+  <p class="footnote">
+    Python simulation · full hand engine with side pots &amp; blind escalation
+    &middot; seed 42 &middot; branch claude/holdem-poker-simulation-2v4gnw
+  </p>
+</div>
+
+<script>
+const players = [
+  { name: "P4: The Bluffer",             wins: 29, color: "var(--c3)", winner: true  },
+  { name: "P3: TAG (Tight-Aggressive)",  wins: 20, color: "var(--c2)"                },
+  { name: "P2: The Calculator",          wins: 17, color: "var(--c1)"                },
+  { name: "P1: The Maniac — all-in",wins: 12, color: "var(--c0)", maniac: true  },
+  { name: "P5: Calling Station",         wins: 12, color: "var(--c4)"                },
+  { name: "P6: Position Player",         wins: 10, color: "var(--c5)"                },
+];
+const maxW  = 29;
+const total = 100;
+
+const bars = document.getElementById('bars');
+
+players.forEach((d, rank) => {
+  const pct  = (d.wins / total * 100).toFixed(1);
+  const barW = (d.wins / maxW * 100).toFixed(2);
+
+  const div = document.createElement('div');
+  div.className = 'row' + (d.winner ? ' row-winner' : '');
+  div.innerHTML = `
+    <div class="rank" style="
+      background: ${d.color}18;
+      color: ${d.color};
+      border-color: ${d.color}50;
+    ">${rank + 1}</div>
+
+    <div class="bar-col">
+      <div class="name-row">
+        ${d.name}
+        ${d.winner ? '<span class="badge badge-winner">Champion</span>' : ''}
+        ${d.maniac ? '<span class="badge badge-challenger">Challenger</span>' : ''}
+      </div>
+      <div class="track">
+        <div class="fill" data-w="${barW}" style="background: ${d.color};"></div>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="wins">${d.wins}</div>
+      <div class="pct">${pct}%</div>
+    </div>
+  `;
+  bars.appendChild(div);
+});
+
+// Staggered bar animation
+requestAnimationFrame(() => {
+  document.querySelectorAll('.fill').forEach((el, i) => {
+    setTimeout(() => {
+      el.style.width = el.dataset.w + '%';
+    }, 80 + i * 60);
+  });
+});
+</script>
