@@ -1,0 +1,15 @@
+Dealing 100 full tournaments (seed=1337, start stack=1000, blinds 10/20 doubling every 15 hands)...
+
+==================================================================
+  WINNER WINNER CHICKEN DINNER — 100 tournament simulations
+==================================================================
+  P1 SuflairGPT       █████████████████                         16  ( 16.0%)
+  P2 TheRock          ████                                       4  (  4.0%)
+  P3 TheMaverick      ████████████████████████████████████████  37  ( 37.0%)
+  P4 TheMathematician █████████████████████████                 23  ( 23.0%)
+  P5 TheProfessor     ██████                                     6  (  6.0%)
+  P6 TheShark         ███████████████                           14  ( 14.0%)
+==================================================================
+
+  SuflairGPT ('if my_turn then bet = all in fi') won 16/100.
+  TheMaverick won 37/100. Thoughts and prayers, SuflairGPT.
