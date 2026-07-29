@@ -1,0 +1,20 @@
+{
+  "sims": 100,
+  "seed": 42,
+  "wins": {
+    "P1 All-In Goblin": 19,
+    "P2 The Rock": 14,
+    "P3 TAG Professor": 16,
+    "P4 LAG Cowboy": 13,
+    "P5 The Mathematician": 24,
+    "P6 The Trapper": 14
+  },
+  "avg_finish": {
+    "P1 All-In Goblin": 4.75,
+    "P2 The Rock": 2.44,
+    "P3 TAG Professor": 3.18,
+    "P4 LAG Cowboy": 3.87,
+    "P5 The Mathematician": 3.63,
+    "P6 The Trapper": 3.13
+  }
+}
