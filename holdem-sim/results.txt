@@ -1,0 +1,18 @@
+
+==================================================================
+  TEXAS HOLD'EM — 100 winner-take-all tournaments, 6 players
+  Everyone starts with 1500 chips. Blinds escalate.
+  Avg tournament length: 80.0 hands
+==================================================================
+
+  WINNER WINNER CHICKEN DINNER HISTOGRAM (championships won)
+
+  Player 1 (All-In Bot)       |█████████████████                         12
+  Player 2 (TAG Shark)        |█████████████████████████                 18
+  Player 3 (The Rock)         |██████                                     4
+  Player 4 (LAG Bully)        |████████████████████████████████████████  29
+  Player 5 (The Professor)    |██████████████████████                    16
+  Player 6 (Trickster)        |█████████████████████████████             21
+
+  👑 Overall champion of the sim: Player 4 (LAG Bully) with 29/100 titles
+
