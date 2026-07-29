@@ -1,0 +1,24 @@
+  ... 20/100 tournaments done (3.7s)
+  ... 40/100 tournaments done (8.1s)
+  ... 60/100 tournaments done (11.6s)
+  ... 80/100 tournaments done (14.7s)
+  ... 100/100 tournaments done (18.6s)
+
+WINNER WINNER CHICKEN DINNER — tournament wins over 100 sims (10315 hands total)
+
+  P1 All-In Andy      █████████████████████████ 16
+  P2 The Accountant   ██████████████ 9
+  P3 The Cowboy       ██████████████████████████████████████████████████ 32
+  P4 The Professor    ████████████████████ 13
+  P5 The Trickster    ████████████████████████████ 18
+  P6 The Shark        ███████████████████ 12
+
+  Average finishing position (1 = chicken dinner, 6 = first bust):
+  P1 All-In Andy      4.80
+  P2 The Accountant   2.86
+  P3 The Cowboy       3.02
+  P4 The Professor    3.53
+  P5 The Trickster    3.24
+  P6 The Shark        3.55
+
+  Elapsed: 18.6s
