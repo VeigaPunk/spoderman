@@ -1,0 +1,19 @@
+
+TOURNAMENT WINS -- winner winner chicken dinner  (100 sims, 6 players, 1000 chips each)
+======================================================================
+P1 Suflair-GPT       | ███████████████                           11  (11%)
+P2 The Rock          | ████████████████████████████████████████  29  (29%)
+P3 Blaze the LAG     | ██████████████████████                    16  (16%)
+P4 The Professor     | ██████████████                            10  (10%)
+P5 The Mathematician | █████████████████                         12  (12%)
+P6 The Shark         | ██████████████████████████████            22  (22%)
+
+Average finishing place (1 = champion, 6 = first bust) and times busting first:
+P1 Suflair-GPT       | avg place 4.80 | first out  53x
+P2 The Rock          | avg place 2.81 | first out  10x
+P3 Blaze the LAG     | avg place 3.50 | first out   8x
+P4 The Professor     | avg place 3.01 | first out   5x
+P5 The Mathematician | avg place 3.64 | first out  17x
+P6 The Shark         | avg place 3.24 | first out   7x
+
+Avg tournament length: 45 hands
