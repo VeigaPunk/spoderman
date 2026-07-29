@@ -1,0 +1,11 @@
+
+WINNER WINNER CHICKEN DINNER — last player standing, 100 tournaments
+==========================================================================
+P1 The Goblin (ALL-IN)                |█████████████████                         12  (12%)
+P2 The Rock (tight-aggressive)        |████████████                               9  (9%)
+P3 The Maniac (loose-aggressive)      |█████████████████████████████             21  (21%)
+P4 The Professor (pot-odds purist)    |██████████████████████                    16  (16%)
+P5 The Shark (position player)        |████████████████████████████████████████  29  (29%)
+P6 The Profiler (adaptive)            |██████████████████                        13  (13%)
+==========================================================================
+Overall champion: P5 The Shark (position player) with 29/100 chicken dinners
