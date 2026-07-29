@@ -1,0 +1,25 @@
+  ... 20/100 tournaments done (12.4s)
+  ... 40/100 tournaments done (21.3s)
+  ... 60/100 tournaments done (31.4s)
+  ... 80/100 tournaments done (39.5s)
+  ... 100/100 tournaments done (54.0s)
+
+==========================================================================
+  WINNER WINNER CHICKEN DINNER — champions of 100 tournaments
+  (6 players, 1500 chips each, escalating blinds, avg 76 hands/tourney)
+==========================================================================
+  P1 Spoderman           |██████████████████████████                         |  13  (13%)
+  P2 TAG_Titan           |██████████                                         |   5  (5%)
+  P3 LAG_Lunatic         |████████████████████████████████████████████       |  22  (22%)
+  P4 EquityOracle        |██████████████████████████████████████             |  19  (19%)
+  P5 NitNorris           |████████████████████████████████                   |  16  (16%)
+  P6 AdaptiveAdversary   |██████████████████████████████████████████████████ |  25  (25%)
+--------------------------------------------------------------------------
+  avg finishing place (1 = champion, 6 = first out):
+    P1 Spoderman           avg place 4.85   busted first  55x   [if my_turn then bet = ALL IN fi]
+    P2 TAG_Titan           avg place 2.82   busted first   2x   [tight-aggressive: Chen ranges, position, c-bets]
+    P3 LAG_Lunatic         avg place 3.86   busted first  19x   [loose-aggressive: bluffs, barrels, hero calls]
+    P4 EquityOracle        avg place 3.69   busted first   8x   [Monte Carlo equity vs pot odds, mixed sizing]
+    P5 NitNorris           avg place 2.64   busted first   2x   [premium-only nit with short-stack push/fold]
+    P6 AdaptiveAdversary   avg place 3.14   busted first  14x   [opponent modeling: exploits shove/fold rates]
+==========================================================================
