@@ -1,0 +1,508 @@
+<title>Winner Winner Chicken Dinner — Hold'em Sim</title>
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  :root {
+    --bg:           #08090E;
+    --surface:      #111318;
+    --surface-2:    #191C26;
+    --surface-3:    #222638;
+    --gold:         #C8A44A;
+    --gold-bright:  #E6C86A;
+    --gold-glow:    rgba(200,164,74,0.18);
+    --gold-rule:    rgba(200,164,74,0.12);
+    --text-hi:      #EDE6D2;
+    --text-mid:     #9E9484;
+    --text-lo:      #5A5448;
+    --bust:         #B84040;
+    --bust-bg:      rgba(184,64,64,0.10);
+    --bust-rule:    rgba(184,64,64,0.25);
+    --c-larry:      #ae8935;
+    --c-nick:       #008b6d;
+    --c-eva:        #cd72a7;
+    --c-gary:       #3d73b6;
+    --c-terry:      #cb8230;
+    --c-dan:        #b83b45;
+    --bar-h:        48px;
+    --r:            3px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-hi);
+    font-family: Georgia, 'Times New Roman', serif;
+    min-height: 100vh;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem 6rem;
+  }
+
+  /* ── Top eyebrow ── */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-rule);
+    padding: 0.3em 0.9em;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+  .eyebrow::before {
+    content: '♠';
+    font-size: 0.8em;
+    opacity: 0.7;
+  }
+
+  /* ── Hero headline ── */
+  .hero-hed {
+    font-family: Impact, 'Arial Black', 'Arial Narrow', sans-serif;
+    font-size: clamp(3rem, 9vw, 6rem);
+    line-height: 0.88;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    text-shadow: 0 0 80px rgba(200,164,74,0.25);
+    text-wrap: balance;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    color: var(--text-lo);
+    letter-spacing: 0.04em;
+    font-style: italic;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Gold rule ── */
+  .felt-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
+    opacity: 0.25;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Chart ── */
+  .chart { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 150px 1fr 40px;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .label {
+    text-align: right;
+    line-height: 1.25;
+    padding-right: 0.1rem;
+  }
+  .label-name {
+    font-size: 0.92rem;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.3em;
+  }
+  .crown {
+    color: var(--gold-bright);
+    font-size: 0.95em;
+    animation: pulse-crown 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse-crown {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.55; }
+  }
+  .label-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    display: block;
+    margin-top: 0.15rem;
+  }
+  .bust-badge {
+    font-family: 'Courier New', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bust);
+    background: var(--bust-bg);
+    border: 1px solid var(--bust-rule);
+    padding: 0.1em 0.45em;
+    border-radius: 2px;
+  }
+
+  /* ── Bar ── */
+  .bar-wrap {
+    height: var(--bar-h);
+    background: var(--surface);
+    border-radius: var(--r);
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: var(--r);
+    width: 0%;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* subtle shimmer on winner bar */
+  .bar-fill.winner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+    animation: shimmer 2.8s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    60%  { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .bar-inner-label {
+    position: absolute;
+    left: 0.75rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s 0.5s;
+  }
+  .bar-fill.labeled .bar-inner-label { opacity: 1; }
+
+  /* bust zero bar */
+  .bar-wrap.bust-wrap {
+    opacity: 0.35;
+  }
+  .zero-line {
+    width: 2px;
+    height: 60%;
+    background: var(--bust);
+    border-radius: 1px;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    opacity: 0.7;
+  }
+
+  /* ── Win count ── */
+  .win-n {
+    font-family: 'Courier New', monospace;
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-mid);
+    text-align: left;
+  }
+  .win-n.winner-n { color: var(--gold); font-size: 1.15rem; }
+  .win-n.bust-n   { color: var(--bust); }
+
+  /* ── Hover tooltip ── */
+  .tip {
+    position: fixed;
+    background: var(--surface-2);
+    border: 1px solid rgba(200,164,74,0.2);
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s;
+    z-index: 999;
+    max-width: 230px;
+    color: var(--text-mid);
+  }
+  .tip.visible { opacity: 1; }
+  .tip-name { display: block; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.3rem; font-family: Georgia, serif; font-weight: bold; }
+  .tip-wins { display: block; margin-top: 0.4rem; font-family: 'Courier New', monospace; font-size: 0.75rem; }
+
+  /* ── Summary strip ── */
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--surface-2);
+  }
+  .kpi { line-height: 1.25; }
+  .kpi-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .kpi-val {
+    font-family: Impact, sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+  .kpi-sub {
+    font-size: 0.72rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-top: 0.2rem;
+  }
+
+  /* ── Footnote ── */
+  .footnote {
+    margin-top: 3rem;
+    font-size: 0.72rem;
+    color: var(--text-lo);
+    line-height: 1.7;
+    font-style: italic;
+    max-width: 640px;
+  }
+  .footnote strong { color: var(--text-mid); font-style: normal; }
+
+  /* ── Legend / strategy key ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.4rem;
+    margin-top: 2rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--surface);
+    border-radius: 4px;
+    border: 1px solid var(--surface-2);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--text-mid);
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>
+
+<span class="eyebrow">Texas Hold'em · 6 Players · 100 Tournaments · Seed 42</span>
+
+<h1 class="hero-hed">Winner<br>Winner<br>Chicken<br>Dinner</h1>
+
+<p class="hero-sub">100 full tournaments · $10,000 starting stack · escalating blinds</p>
+
+<div class="felt-rule"></div>
+
+<div class="chart" id="chart" aria-label="Tournament wins per player out of 100"></div>
+
+<div class="summary">
+  <div class="kpi">
+    <span class="kpi-label">Champion</span>
+    <span class="kpi-val" style="color:var(--gold)">Larry</span>
+    <span class="kpi-sub">Loose-Aggressive</span>
+  </div>
+  <div class="kpi">
+    <span class="kpi-label">Win Rate</span>
+    <span class="kpi-val" style="color:var(--gold)">37%</span>
+    <span class="kpi-sub">37 of 100 tournaments</span>
+  </div>
+  <div class="kpi">
+    <span class="kpi-label">Dan's Score</span>
+    <span class="kpi-val" style="color:var(--bust)">0</span>
+    <span class="kpi-sub">zero wins · absolutely cooked</span>
+  </div>
+  <div class="kpi">
+    <span class="kpi-label">Field</span>
+    <span class="kpi-val" style="color:var(--text-mid); font-size: 1.4rem">6 bots</span>
+    <span class="kpi-sub">5 elaborate · 1 caveman</span>
+  </div>
+</div>
+
+<div class="legend" id="legend" aria-label="Strategy legend"></div>
+
+<p class="footnote">
+  <strong>Method:</strong> Full Python Texas Hold'em engine with hand evaluation, betting rounds, and escalating blind levels. Each player's strategy is opaque to others.
+  Dan executes exactly one rule — <strong>if&nbsp;my_turn → bet&nbsp;=&nbsp;all&#8209;in</strong> — and collected precisely
+  zero chicken dinners across 100 tournaments. The four elaborate bots clustered between 18–37 wins.
+  Larry's loose-aggressive constant pressure dominated; Nick the ultra-nit scraped 21 wins
+  on sheer selectivity. Terry barely survived at 5.
+</p>
+
+<div id="tip" class="tip" role="tooltip"></div>
+
+<script>
+const players = [
+  {
+    name: "Larry",
+    tag: "LAG — Loose-Aggressive",
+    desc: "Plays wide range, 3-bets light, c-bets every flop regardless of hand, applies constant pressure. Pressure compounds over many hands.",
+    wins: 37,
+    color: "#ae8935",
+    winner: true,
+  },
+  {
+    name: "Nick",
+    tag: "NIT — Ultra-Tight",
+    desc: "Top 8% of hands only. Needs full house or better to fire large bets. Waits, waits, then strikes — but starves on dead orbits.",
+    wins: 21,
+    color: "#008b6d",
+  },
+  {
+    name: "Eva",
+    tag: "EXPLOIT — Pot-Odds",
+    desc: "Rigorous equity-vs-price math every action. Adjusts bet sizing for board texture (dry vs. wet). Over-folds to nits; over-calls LAGs.",
+    wins: 19,
+    color: "#cd72a7",
+  },
+  {
+    name: "Gary",
+    tag: "GTO — Balanced",
+    desc: "Mixed-strategy balanced ranges. Bluffs 33% of draws, plays position-aware. Unexploitable in theory; ground down in practice.",
+    wins: 18,
+    color: "#3d73b6",
+  },
+  {
+    name: "Terry",
+    tag: "TAG — Tight-Aggressive",
+    desc: "Top 22% of hands; bets hard when in. Never slow-plays. Predictable when tight; bled out by constant aggression from Larry.",
+    wins: 5,
+    color: "#cb8230",
+  },
+  {
+    name: "Dan",
+    tag: "SIMPLE — All-In",
+    desc: "if my_turn → bet = all-in · fi · No reads, no math, no soul. Won 0 of 100 tournaments. Humiliated. Absolutely cooked.",
+    wins: 0,
+    color: "#b83b45",
+    bust: true,
+  },
+];
+
+const MAX = 37;
+const chart = document.getElementById("chart");
+const tip = document.getElementById("tip");
+const legend = document.getElementById("legend");
+
+players.forEach((p, i) => {
+  const pct = MAX > 0 ? (p.wins / MAX) * 100 : 0;
+
+  const row = document.createElement("div");
+  row.className = "chart-row";
+  row.setAttribute("role", "row");
+
+  // Label
+  const lbl = document.createElement("div");
+  lbl.className = "label";
+  lbl.innerHTML = `
+    <div class="label-name" style="color:${p.bust ? 'var(--bust)' : p.winner ? 'var(--gold-bright)' : 'var(--text-hi)'}">
+      ${p.name}
+      ${p.winner ? '<span class="crown" aria-label="champion">♛</span>' : ''}
+      ${p.bust ? '<span class="bust-badge">BUST</span>' : ''}
+    </div>
+    <span class="label-tag">${p.tag.split(' — ')[0]}</span>
+  `;
+
+  // Bar
+  const wrap = document.createElement("div");
+  wrap.className = "bar-wrap" + (p.bust ? " bust-wrap" : "");
+
+  const fill = document.createElement("div");
+  fill.className = "bar-fill" + (p.winner ? " winner" : "");
+  fill.style.background = p.bust
+    ? "transparent"
+    : `linear-gradient(90deg, ${p.color}CC, ${p.color})`;
+  fill.id = "bar-" + i;
+
+  const innerLabel = document.createElement("span");
+  innerLabel.className = "bar-inner-label";
+  innerLabel.textContent = p.wins > 0 ? `${p.wins} wins` : "";
+  fill.appendChild(innerLabel);
+  wrap.appendChild(fill);
+
+  if (p.bust) {
+    const zl = document.createElement("div");
+    zl.className = "zero-line";
+    wrap.appendChild(zl);
+  }
+
+  // Win count
+  const wn = document.createElement("div");
+  wn.className = "win-n" + (p.winner ? " winner-n" : "") + (p.bust ? " bust-n" : "");
+  wn.textContent = p.wins;
+  wn.style.fontVariantNumeric = "tabular-nums";
+
+  row.appendChild(lbl);
+  row.appendChild(wrap);
+  row.appendChild(wn);
+  chart.appendChild(row);
+
+  // Animate bar
+  if (!p.bust && pct > 0) {
+    setTimeout(() => {
+      fill.style.width = pct + "%";
+      setTimeout(() => fill.classList.add("labeled"), 700);
+    }, 200 + i * 130);
+  }
+
+  // Tooltip
+  const showTip = (e) => {
+    tip.innerHTML = `
+      <span class="tip-name">${p.name}</span>
+      ${p.desc}
+      <span class="tip-wins" style="color:${p.color}">${p.wins} tournament wins (${p.wins}%)</span>
+    `;
+    tip.classList.add("visible");
+  };
+  const moveTip = (e) => {
+    const x = Math.min(e.clientX + 16, window.innerWidth - 250);
+    const y = Math.max(e.clientY - 110, 8);
+    tip.style.left = x + "px";
+    tip.style.top  = y + "px";
+  };
+  const hideTip = () => tip.classList.remove("visible");
+
+  wrap.addEventListener("mouseenter", showTip);
+  wrap.addEventListener("mousemove", moveTip);
+  wrap.addEventListener("mouseleave", hideTip);
+  lbl.addEventListener("mouseenter", showTip);
+  lbl.addEventListener("mousemove", moveTip);
+  lbl.addEventListener("mouseleave", hideTip);
+});
+
+// Legend
+players.forEach(p => {
+  const item = document.createElement("div");
+  item.className = "legend-item";
+  item.innerHTML = `
+    <span class="legend-dot" style="background:${p.color}"></span>
+    <span>${p.name} — ${p.tag.split(' — ')[1] || p.tag}</span>
+  `;
+  legend.appendChild(item);
+});
+</script>

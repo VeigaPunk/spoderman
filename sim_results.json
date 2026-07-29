@@ -1,0 +1,33 @@
+{
+  "results": [
+    [
+      "Larry (LAG)",
+      37
+    ],
+    [
+      "Nick (Nit)",
+      21
+    ],
+    [
+      "Eva (Exploit)",
+      19
+    ],
+    [
+      "Gary (GTO)",
+      18
+    ],
+    [
+      "Terry (TAG)",
+      5
+    ]
+  ],
+  "total_sims": 100,
+  "player_descriptions": {
+    "Dan (All-In Dan)": "SIMPLE: always ALL-IN",
+    "Gary (GTO)": "GTO Balanced",
+    "Terry (TAG)": "Tight-Aggressive (TAG)",
+    "Larry (LAG)": "Loose-Aggressive (LAG)",
+    "Nick (Nit)": "Ultra-Nit",
+    "Eva (Exploit)": "Exploitative (Pot-Odds)"
+  }
+}
