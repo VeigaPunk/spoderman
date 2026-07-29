@@ -1,0 +1,21 @@
+{
+  "sims": 100,
+  "seed": 42,
+  "wins": {
+    "SuflairGPT_AllIn": 7,
+    "EquityNerd": 15,
+    "Adaptive_Hustler": 15,
+    "LAG_Bluffmaster": 29,
+    "TAG_Shark": 13,
+    "Rock_Nit": 21
+  },
+  "avg_finish": {
+    "SuflairGPT_AllIn": 4.95,
+    "TAG_Shark": 3.44,
+    "LAG_Bluffmaster": 3.64,
+    "Rock_Nit": 2.6,
+    "EquityNerd": 3.38,
+    "Adaptive_Hustler": 2.99
+  },
+  "avg_hands": 54.69
+}

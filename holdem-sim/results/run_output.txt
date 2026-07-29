@@ -1,0 +1,22 @@
+Dealing 100 six-max freezeout tournaments (seed=42)...
+
+  WINNER WINNER CHICKEN DINNER -- tournament wins (100 sims)
+  ----------------------------------------------------------------
+  P1 SuflairGPT_AllIn     7 | ############ <- if my_turn: ALL IN
+  P2 TAG_Shark           13 | ######################
+  P3 LAG_Bluffmaster     29 | ################################################
+  P4 Rock_Nit            21 | ###################################
+  P5 EquityNerd          15 | #########################
+  P6 Adaptive_Hustler    15 | #########################
+  ----------------------------------------------------------------
+
+  avg tournament length: 54.7 hands
+  avg finish position (1 = champion):
+    P1 SuflairGPT_AllIn   4.95
+    P2 TAG_Shark          3.44
+    P3 LAG_Bluffmaster    3.64
+    P4 Rock_Nit           2.60
+    P5 EquityNerd         3.38
+    P6 Adaptive_Hustler   2.99
+
+  results written to results/results.json
