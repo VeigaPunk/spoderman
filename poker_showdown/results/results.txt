@@ -1,0 +1,19 @@
+========================================================================
+  WINNER WINNER CHICKEN DINNER — 100 tournaments, 6 players, 2000 starting chips
+========================================================================
+  P1 Suflair-GPT [ALL-IN]    | █████████████████████ 13 (13%)
+  P2 The Professor [TAG]     | ████████████████████████ 15 (15%)
+  P3 La Cobra [LAG]          | ███████████████████ 12 (12%)
+  P4 The Rock [NIT]          | █████████████████████ 13 (13%)
+  P5 The Profiler [EXPLOIT]  | ███████████████████████████████████ 22 (22%)
+  P6 The Actuary [RISK-MGMT] | ████████████████████████████████████████ 25 (25%)
+------------------------------------------------------------------------
+  avg finishing place (1 = chicken dinner, 6 = first out) | times busted first:
+    P1 Suflair-GPT [ALL-IN]       4.64   | busted first 56x
+    P2 The Professor [TAG]        3.96   | busted first 22x
+    P3 La Cobra [LAG]             3.27   | busted first 2x
+    P4 The Rock [NIT]             2.26   | busted first 0x
+    P5 The Profiler [EXPLOIT]     3.51   | busted first 15x
+    P6 The Actuary [RISK-MGMT]    3.36   | busted first 5x
+
+  avg hands per tournament: 82, total time 17s

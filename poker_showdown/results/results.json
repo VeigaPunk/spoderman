@@ -1,0 +1,29 @@
+{
+  "sims": 100,
+  "seed": 42,
+  "wins": {
+    "Suflair-GPT [ALL-IN]": 13,
+    "The Professor [TAG]": 15,
+    "La Cobra [LAG]": 12,
+    "The Rock [NIT]": 13,
+    "The Profiler [EXPLOIT]": 22,
+    "The Actuary [RISK-MGMT]": 25
+  },
+  "avg_place": {
+    "Suflair-GPT [ALL-IN]": 4.64,
+    "The Professor [TAG]": 3.96,
+    "La Cobra [LAG]": 3.27,
+    "The Rock [NIT]": 2.26,
+    "The Profiler [EXPLOIT]": 3.51,
+    "The Actuary [RISK-MGMT]": 3.36
+  },
+  "busted_first": {
+    "Suflair-GPT [ALL-IN]": 56,
+    "The Professor [TAG]": 22,
+    "La Cobra [LAG]": 2,
+    "The Rock [NIT]": 0,
+    "The Profiler [EXPLOIT]": 15,
+    "The Actuary [RISK-MGMT]": 5
+  },
+  "avg_hands": 82.08
+}
