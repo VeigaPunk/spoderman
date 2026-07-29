@@ -1,0 +1,13 @@
+{
+  "sims": 100,
+  "seed": 42,
+  "wins": {
+    "Player 3 \u2014 La Pistolera": 27,
+    "Player 1 \u2014 All-In Andy": 29,
+    "Player 6 \u2014 The Chameleon": 21,
+    "Player 5 \u2014 The Actuary": 16,
+    "Player 4 \u2014 The Rock": 3,
+    "Player 2 \u2014 The Professor": 4
+  },
+  "avg_hands": 95.1
+}

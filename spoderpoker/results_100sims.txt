@@ -1,0 +1,14 @@
+Dealing 100 freezeout tournaments (6 players, 1000 chips each, seed=42)...
+
+==========================================================================
+  WINNER WINNER CHICKEN DINNER — championships per player (100 tournaments)
+==========================================================================
+  Player 1 — All-In Andy        29  ██████████████████████████████████████████████████
+  Player 2 — The Professor       4  ███████
+  Player 3 — La Pistolera       27  ███████████████████████████████████████████████
+  Player 4 — The Rock            3  █████
+  Player 5 — The Actuary        16  ████████████████████████████
+  Player 6 — The Chameleon      21  ████████████████████████████████████
+==========================================================================
+  avg tournament length: 95 hands
+  results written to results_100sims.json
